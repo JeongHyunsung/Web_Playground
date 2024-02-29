@@ -53,7 +53,7 @@ nav{
     gap: 2rem;
 }
 
-.toggle-area-month{
+.toggle-area{
     align-items: center;
     width: 3.0rem;
     height: 1.6rem;
@@ -62,13 +62,16 @@ nav{
     background: linear-gradient(var(--gradient));
 }
 
-.toggle-area-year{
+.toggle-button{
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 0.6rem;
     margin-left: 0.2rem;
-    margin-right: 0.2rem;
     background-color: var(--wh);
+}
+
+.toggle-button.month{
+    margin-left: 1.6rem;
 }
 
 main{
@@ -86,6 +89,7 @@ main{
     margin-left: 14%;
     box-shadow: 0 0 3px var(--lb);
     border-radius: 3%;
+    background-color: var(--wh);
 }
 
 
@@ -133,12 +137,15 @@ hr{
     width: 80%;
     margin-left: 10%;
     border-radius: 4px;
-    background-color: var(--wh);
-    border-color: hsl(237, 63%, 64%);
+    background: linear-gradient(var(--gradient));
+    border-color: transparent;
+    background-image: linear-gradient(var(--gradient));
+    background-origin: border-box;
+    background-clip: border-box;
 }
 
 .learn-more-button p{
-    color: hsl(237, 63%, 64%);
+    color: var(--wh);
     font-weight: 700;
     /*color: transparent;
     background: linear-gradient(var(--gradient));
@@ -152,9 +159,9 @@ hr{
     color: var(--wh);
 }
 .container.basic .learn-more-button{
-    background : hsl(237, 63%, 64%);
-    border-color: var(--wh);
+    background : var(--wh);
+    box-shadow: none;
 }
 .container.basic .learn-more-button p{
-    color: var(--wh);
+    color: hsl(237, 63%, 64%);
 }
