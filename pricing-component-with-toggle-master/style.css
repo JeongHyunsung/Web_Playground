@@ -1,6 +1,4 @@
-.attribution { font-size: 11px; text-align: center; }
-.attribution a { color: hsl(228, 45%, 44%); }
-@import url("https://fonts.google.com/specimen/Montserrat");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
 
 :root {
     --gradient: hsl(236, 72%, 79%), hsl(237, 63%, 64%);
@@ -8,6 +6,7 @@
     --lb: hsl(234, 14%, 74%);
     --b: hsl(233, 13%, 49%);
     --db: hsl(232, 13%, 33%);
+    --wh: white;
     --body-font: "Montserrat", sans-serif;
 }
 
@@ -18,33 +17,144 @@
 
 html{
     font-size: 15px;
+    height: 100%;
 }
 
 body{
+    min-height: 100%;
     font-family: var(--body-font);
+    text-align: center;
+    overflow-y: scroll;
+    color: var(--db);
     background-color: var(--llb);
     background-image: url("images/bg-bottom.svg"), url("images/bg-top.svg");
     background-repeat: no-repeat, no-repeat;
-    background-position: bottom -5rem left 0, top 0 right 0;
+    background-position: bottom 0 left 0, top 0 right 0;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--lb);
+    padding-top: 5rem;
+    gap: 2.5rem;
 }
 
 h1{
     color: var(--b);
-    text-align: center;
-}
-
-main{
-    margin-top: 5rem;
-    margin-bottom: 5rem;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 nav{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
+
+.toggle-area-month{
+    align-items: center;
+    width: 3.0rem;
+    height: 1.6rem;
+    border: none;
+    border-radius: 0.8rem;
+    background: linear-gradient(var(--gradient));
+}
+
+.toggle-area-year{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 0.6rem;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    background-color: var(--wh);
+}
+
+main{
+    width:100%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
 .price-info{
-    display: flex;
-    justify-content: center;
+    display: grid;
+    width: 72%;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1440px;
+    margin-left: 14%;
+    box-shadow: 0 0 3px var(--lb);
+    border-radius: 3%;
 }
 
 
+.container{
+    width: 100%;
+    border-radius: 3%;
+    background-color: var(--wh);
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.8rem;
+    padding-bottom: 1.4rem;
+    gap: 1.8rem;
+}
+
+.container ul{
+    list-style: none;
+}
+
+.container ul *{
+    margin-bottom: 1.2rem;
+}
+
+.price-num{
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dollar{
+    font-size: 1.7rem;
+    margin-right: 0.3rem;
+}
+
+hr{
+    width: 80%;
+    margin-left: 10%;
+    border-width: 0.5px;
+    border-color: var(--llb);
+}
+
+.learn-more-button{
+    height: 3rem;
+    width: 80%;
+    margin-left: 10%;
+    border-radius: 4px;
+    background-color: var(--wh);
+    border-color: hsl(237, 63%, 64%);
+}
+
+.learn-more-button p{
+    color: hsl(237, 63%, 64%);
+    font-weight: 700;
+    /*color: transparent;
+    background: linear-gradient(var(--gradient));
+    -webkit-background-clip: text;
+    background-clip: text;*/
+}
+
+/* highlighted*/
+.container.basic{
+    background: linear-gradient(var(--gradient));
+    color: var(--wh);
+}
+.container.basic .learn-more-button{
+    background : hsl(237, 63%, 64%);
+    border-color: var(--wh);
+}
+.container.basic .learn-more-button p{
+    color: var(--wh);
+}
