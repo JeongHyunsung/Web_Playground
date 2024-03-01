@@ -154,14 +154,14 @@ hr{
 }
 
 /* highlighted*/
-.container.basic{
+.container.highlighted{
     background: linear-gradient(var(--gradient));
     color: var(--wh);
 }
-.container.basic .learn-more-button{
+.container.highlighted .learn-more-button{
     background : var(--wh);
     box-shadow: none;
 }
-.container.basic .learn-more-button p{
+.container.highlighted .learn-more-button p{
     color: hsl(237, 63%, 64%);
 }
