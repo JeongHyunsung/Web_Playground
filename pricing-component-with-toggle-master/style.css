@@ -100,10 +100,11 @@ main{
     justify-items: center;
     display: flex;
     flex-direction: column;
-    padding-top: 1.8rem;
-    padding-bottom: 1.4rem;
-    gap: 1.8rem;
+    padding-top: 2rem;
+    padding-bottom: 1.6rem;
+    gap: 2rem;
 }
+
 
 .container ul{
     list-style: none;
@@ -114,14 +115,14 @@ main{
 }
 
 .price-num{
-    font-size: 3rem;
+    font-size: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .dollar{
-    font-size: 1.7rem;
+    font-size: 3rem;
     margin-right: 0.3rem;
 }
 
@@ -164,4 +165,29 @@ hr{
 }
 .container.highlighted .learn-more-button p{
     color: hsl(237, 63%, 64%);
+}
+
+
+@media screen and (max-width:1025px){
+    .price-info{
+        width: 80%;
+        grid-template-columns: 1fr;
+        margin-left: 10%;
+        margin-top: 2rem;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: transparent;
+        gap: 5rem;
+    }
+    .container.prof{
+        background: linear-gradient(var(--gradient));
+        color: var(--wh);
+    }
+    .container.prof .learn-more-button{
+        background : var(--wh);
+        box-shadow: none;
+    }
+    .container.prof .learn-more-button p{
+        color: hsl(237, 63%, 64%);
+    }
 }
