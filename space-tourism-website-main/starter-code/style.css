@@ -34,4 +34,61 @@ h5{
     font-size: 28px;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html{
+    min-height: 100%;
+}
+
+body{
+    height: 100%;
+    background-color: var(--col-bl);
+    background-image: url("./assets/home/background-home-desktop.jpg");
+    background-size: cover;
+}
+
+header{
+    margin-top: 40px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    margin-left: 55px;
+}
+
+.box1{
+    margin-left: calc(13% - 103px);
+    width: 35%;
+    height: 1px;
+    background-color: #979797;
+    z-index: 2;
+    position: relative;
+    left: 3%;
+}
+
+.box2{
+    width: 55%;
+    height: 96px;
+    background-color: RGBa(255, 255,255,4%);
+    backdrop-filter: blur(81.55px);
+    position: relative;
+    z-index: 1
+}
+
+.box3{
+    width: 8%;
+    height: 3px;
+    margin-left: 93px;
+    margin-top: 93px;
+    background-color: var(--col-wh);
+    z-index: 2
+}
+
+
 
