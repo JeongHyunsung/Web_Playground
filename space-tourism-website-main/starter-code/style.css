@@ -49,6 +49,7 @@ body{
     background-color: var(--col-bl);
     background-image: url("./assets/home/background-home-desktop.jpg");
     background-size: cover;
+    color: var(--col-wh);
 }
 
 header{
@@ -78,16 +79,17 @@ header{
     background-color: RGBa(255, 255,255,4%);
     backdrop-filter: blur(81.55px);
     position: relative;
-    z-index: 1
+    z-index: 1;
+    display: flex;
 }
 
-.box3{
-    width: 8%;
-    height: 3px;
-    margin-left: 93px;
-    margin-top: 93px;
-    background-color: var(--col-wh);
-    z-index: 2
+.mbox{
+    height: 100%;
+
+}
+
+.home-box{
+
 }
 
 
