@@ -32,12 +32,32 @@ h4{
 h5{
     font-family: var(--font-family-s);
     font-size: 28px;
+    letter-spacing: 4.75px;
+}
+
+.sub-head1{
+    font-family: var(--font-family-l);
+    font-size: 28px;
+}
+
+.sub-head2{
+    font-family: var(--font-family-s);
+    font-size: 14px;
+}
+
+.nav-text{
+    font-family: var(--font-family-s);
+    font-size: 16px;
+    letter-spacing: 2.8px;
+    font-weight: 700;
+    position: relative;
+    top: -1px;
+
 }
 
 *{
     margin: 0;
     padding: 0;
-    border: 0;
 }
 
 html{
@@ -74,7 +94,7 @@ header{
 }
 
 .box2{
-    width: 55%;
+    width: 52%;
     height: 96px;
     background-color: RGBa(255, 255,255,4%);
     backdrop-filter: blur(81.55px);
@@ -84,12 +104,44 @@ header{
 }
 
 .mbox{
-    height: 100%;
-
+    height: 96px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.home-box{
+.status-box{
+    width: 100%;
+    height: 2px;
+    background-color: var(--col-wh);
+    visibility: hidden;
+    position: relative;
+    top: 37px;
+}
 
+.visible{
+    visibility: visible;
+}
+.home-box{
+    
+    margin-left: 20%;
+}
+.dest-box{
+    margin-left: 10%;
+}
+.crew-box{
+    margin-left: 10%
+}
+.tech-box{
+    margin-left: 10%
+}
+
+@media screen and (max-width: 1468px){
+    .status-box{
+        top: 28px;
+    }
 }
 
 
