@@ -69,10 +69,17 @@ html{
 
 body{
     background-color: var(--col-bl);
-    background-image: url("./assets/home/background-home-desktop.jpg");
+    background-image: url(./assets/home/background-home-desktop.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     color: var(--col-wh);
     overflow-x: scroll;
+}
+
+body.destination-body{
+    background-image: url(./assets/destination/background-destination-desktop.jpg);
 }
 
 
@@ -151,14 +158,12 @@ main{
     display: flex;
     flex-direction: column;
     gap: 23px;
-
 }
 
 .Content-2{
     margin-top: calc(55% - 136px);
     margin-left: 38%;
 }
-
 
 #home-p-1{
     line-height: 32px;
@@ -182,11 +187,23 @@ main{
 
 /* DESTINATION contents section */ 
 
+.Content-1.destination-c1{
+    margin-left: 20%;
+    margin-top: calc(24% - 136px);
+    gap: 0px;
+}
 
+.destination-h5-1{
+    opacity: 25%;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
 
-
-
-
+.moon{
+    margin-top: 20%;
+    margin-left: 30%;
+}
 
 /* media section */
 
