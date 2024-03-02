@@ -12,27 +12,32 @@
 h1{
     font-family: var(--font-family-l);
     font-size: 150px;
+    font-weight: normal;
 }
 
 h2{
     font-family: var(--font-family-l);
     font-size: 100px;
+    font-weight: normal;
 }
 
 h3{
     font-family: var(--font-family-l);
     font-size: 56px;
+    font-weight: normal;
 }
 
 h4{
     font-family: var(--font-family-l);
     font-size: 32px;
+    font-weight: normal;
 }
 
 h5{
     font-family: var(--font-family-s);
     font-size: 28px;
     letter-spacing: 4.75px;
+    font-weight: normal;
 }
 
 .sub-head1{
@@ -52,7 +57,6 @@ h5{
     font-weight: 700;
     position: relative;
     top: -1px;
-
 }
 
 *{
@@ -61,17 +65,18 @@ h5{
 }
 
 html{
-    min-height: 100%;
 }
 
 body{
-    height: 100%;
     background-color: var(--col-bl);
     background-image: url("./assets/home/background-home-desktop.jpg");
     background-size: cover;
     color: var(--col-wh);
+    overflow-x: scroll;
 }
 
+
+/* header section */
 header{
     margin-top: 40px;
     height: 96px;
@@ -110,6 +115,10 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
+    border: 0;
+    color: var(--col-wh);
+    margin-left: 7%
 }
 
 .status-box{
@@ -120,23 +129,66 @@ header{
     position: relative;
     top: 37px;
 }
-
 .visible{
     visibility: visible;
 }
 .home-box{
-    
     margin-left: 20%;
 }
-.dest-box{
-    margin-left: 10%;
+
+
+/* HOME contents section */ 
+
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
-.crew-box{
-    margin-left: 10%
+
+.Content-1{
+    margin-right: 24%;
+    margin-left: 30%;
+    margin-top: calc(42% - 136px);
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+
 }
-.tech-box{
-    margin-left: 10%
+
+.Content-2{
+    margin-top: calc(55% - 136px);
+    margin-left: 38%;
 }
+
+
+#home-p-1{
+    line-height: 32px;
+}
+
+.home-explore-button{
+    border-radius: 50%;
+    width: 274px;
+    height: 274px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    background-color: var(--col-wh);
+}
+
+.home-explore-button-h4{
+    letter-spacing: 2px;
+}
+
+
+/* DESTINATION contents section */ 
+
+
+
+
+
+
+
+/* media section */
 
 @media screen and (max-width: 1468px){
     .status-box{
