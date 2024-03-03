@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  
+  <title>Space tourism website</title>
+</head>
+<body class="crew-body">
+  <header>
+    <img class="logo" sizes="48x48" src="./assets/shared/logo.svg"/>
+    <div class="box1"></div>
+    <nav class="box2">
+      <button class="mbox home-box" onclick="location.href='index.html'">
+        <p class="nav-text">00 HOME</p>
+        <div class="status-box"></div> 
+      </button>
+      <button class="mbox dest-box" onclick="location.href='destination.html'">
+        <p class="nav-text">01 DESTINATION</p>
+        <div class="status-box"></div> 
+      </button>
+      <button class="mbox crew-box cur-nav" onclick="location.href='crew.html'">
+        <p class="nav-text">02 CREW</p>
+        <div class="status-box visible"></div> 
+      </button>
+      <button class="mbox tech-box" onclick="location.href='technology.html'">
+        <p class="nav-text">03 TECHNOLOGY</p>
+        <div class="status-box"></div> 
+      </button>
+    </nav>
+  </header>
+  <main>
+    <div class="Content-1 crew-c1">
+        <h5><span class="destination-h5-1">02 </span>MEET YOUR CREW</h5>
+        <h4 id="crew-m">COMMANDER</h4>
+        <h3 id="crew-n">DOUGLAS HURLEY</h3>
+        <div class="crew-box-1">
+            <p id="crew-p">Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.</p>
+        </div>
+        <nav class="crew-subnav">
+            <div class="a cur-nav"></div>
+            <div class="b"></div>
+            <div class="c"></div>
+            <div class="d"></div>
+        </nav>
+    </div>
+    <div class="Content-2 crew-c2">
+      <img class="crew-image a" id="crew-i" src="./assets/crew/image-douglas-hurley.webp">
+    </div>
+  </main>
+  <script type="module" src="script.js"></script>
+  
+</body>
+</html>

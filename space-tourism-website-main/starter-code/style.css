@@ -98,6 +98,10 @@ body.destination-body{
     background-image: url(./assets/destination/background-destination-desktop.jpg);
 }
 
+body.crew-body{
+    background-image: url(./assets/crew/background-crew-desktop.jpg);
+}
+
 
 /* header section */
 header{
@@ -220,9 +224,6 @@ main{
 
 .destination-h5-1{
     opacity: 25%;
-    font-weight: bold;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
 }
 
 .moon{
@@ -273,6 +274,79 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-row-gap: 11px;
+}
+
+/* CREW contents section */ 
+
+.Content-1.crew-c1{
+    margin-left: 163px;
+    margin-top: 60px;
+    margin-right: 0;
+    gap: 0;
+}
+
+.Content-2.crew-c2{
+    margin-left: 100px;
+    margin-top: 62px;
+    width: auto;
+    height: calc(100vh - 198px);
+    flex-direction: column-reverse;
+}
+
+.Content-1.crew-c1 h5{
+    color: var(--col-wh);
+}
+
+.crew-c1 .crew-box-1{
+    margin-top: 27px;
+    margin-bottom: 120px;
+    width: 444px;
+}
+
+.crew-c1 h4{
+    margin-top: 150px;
+    margin-bottom: 15px;
+    opacity: 50%;
+}
+
+.crew-subnav{
+    width: 132px;
+    height: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.crew-subnav div{
+    width:16px;
+    height:16px;
+    border-radius:8px;
+    background-color: #979797;
+    opacity: 20%;
+}
+
+.crew-subnav .cur-nav{
+    background-color: white;
+    opacity: 100%;
+}
+
+.crew-image.a{
+    height: 712px;
+    width: 568px;
+}
+
+.crew-image.b{
+    height: 654px;
+    width: 453px;
+}
+
+.crew-image.c{
+    height: 681px;
+    width: 554px;
+}
+
+.crew-image.d{
+    height: 607px;
+    width: 615px;
 }
 
 
