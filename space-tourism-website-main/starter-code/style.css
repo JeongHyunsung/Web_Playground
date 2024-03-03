@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Bellefair:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed");
+@import url("https://fonts.googleapis.com/css2?family=Barlow");
 
 :root{
     --col-bl: #0b0d17;
     --col-pp: #d0d6f9;
     --col-wh: #FFFFFF;
     --font-family-l: "Bellefair";
-    --font-family-s: "Barlow Condensed";
+    --font-family-sc: "Barlow Condensed";
+    --font-family-s: "Barlow";
 }
 
 h1{
@@ -34,29 +36,43 @@ h4{
 }
 
 h5{
-    font-family: var(--font-family-s);
+    font-family: var(--font-family-sc);
     font-size: 28px;
     letter-spacing: 4.75px;
     font-weight: normal;
+    color: var(--col-pp);
 }
 
 .sub-head1{
     font-family: var(--font-family-l);
     font-size: 28px;
+    color: var(--col-wh);
 }
 
 .sub-head2{
     font-family: var(--font-family-s);
     font-size: 14px;
+    letter-spacing: 2.35px;
+    color: var(--col-pp);
 }
 
 .nav-text{
-    font-family: var(--font-family-s);
+    font-family: var(--font-family-sc);
     font-size: 16px;
     letter-spacing: 2.8px;
-    font-weight: 700;
+    font-weight: normal;
     position: relative;
     top: -1px;
+    color: var(--col-wh);
+}
+
+p{
+    line-height: 32px;
+    font-family: var(--font-family-s);
+    font-size: 18px;
+    color: var(--col-pp);
+    text-emphasis: normal;
+
 }
 
 *{
@@ -96,8 +112,8 @@ header{
 }
 
 .box1{
-    margin-left: calc(13% - 103px);
-    width: 35%;
+    margin-left: calc(60px - 3%);
+    width: calc(51% - 163px);
     height: 1px;
     background-color: #979797;
     z-index: 2;
@@ -134,7 +150,7 @@ header{
     background-color: var(--col-wh);
     visibility: hidden;
     position: relative;
-    top: 37px;
+    top: 31px;
 }
 .visible{
     visibility: visible;
@@ -163,10 +179,8 @@ main{
 .Content-2{
     margin-top: calc(55% - 136px);
     margin-left: 38%;
-}
-
-#home-p-1{
-    line-height: 32px;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-explore-button{
@@ -188,9 +202,20 @@ main{
 /* DESTINATION contents section */ 
 
 .Content-1.destination-c1{
+    margin-left: 163px;
+    margin-top: 60px;
+    margin-right: 0;
+}
+
+.Content-2.destination-c2{
     margin-left: 20%;
-    margin-top: calc(24% - 136px);
-    gap: 0px;
+    width: 450px;
+    margin-top: 120px;
+    gap: 14px;
+}
+
+.Content-1.destination-c1 h5{
+    color: var(--col-wh);
 }
 
 .destination-h5-1{
@@ -201,15 +226,62 @@ main{
 }
 
 .moon{
-    margin-top: 20%;
-    margin-left: 30%;
+    margin-top: 15%;
+    margin-left: 15%;
+    width: 445px;
+    height: auto;
 }
+
+.destination-subnav{
+    display: flex;
+    height: 34px;
+    margin-top: 12%;
+    margin-bottom: 23px;
+}
+
+.destination-subnav .mbox{
+    height: 34px;
+    color: var(--col-pp);
+}
+
+.destination-subnav .moon-box{
+    margin-left: 0;
+}
+
+.destination-subnav .status-box{
+    position: relative;
+    top: 1px;
+}
+
+.destination-subnav *{
+    color: var(--col-pp);
+}
+
+.nav-text.cur-nav{
+    color: var(--col-wh);
+}
+
+.destination-c2 hr{
+    background-color: #383B4B;
+    border: 0;
+    height: 1px;
+    margin-top: 40px;
+    margin-bottom: 14px;
+}
+
+.destination-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 11px;
+}
+
+
 
 /* media section */
 
 @media screen and (max-width: 1468px){
     .status-box{
-        top: 28px;
+        top: 15px;
     }
 }
 

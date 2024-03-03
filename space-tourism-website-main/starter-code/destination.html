@@ -13,11 +13,11 @@
     <img class="logo" sizes="48x48" src="./assets/shared/logo.svg"/>
     <div class="box1"></div>
     <nav class="box2">
-      <button class="mbox cur-nav home-box" onclick="location.href='index.html'">
+      <button class="mbox home-box" onclick="location.href='index.html'">
         <p class="nav-text">00 HOME</p>
         <div class="status-box"></div> 
       </button>
-      <button class="mbox dest-box" onclick="location.href='destination.html'">
+      <button class="mbox cur-nav dest-box" onclick="location.href='destination.html'">
         <p class="nav-text">01 DESTINATION</p>
         <div class="status-box visible"></div> 
       </button>
@@ -36,7 +36,39 @@
       <h5><span class="destination-h5-1">01 </span>PICK YOUR DESTINATION</h5>
       <img class="moon", src="./assets/destination/image-moon.webp">
     </div>
-    <div class="Content-2 destination-c2"></div>
+    <div class="Content-2 destination-c2">
+      <nav class="destination-subnav">
+        <button class="mbox cur-nav moon-box">
+          <p class="nav-text cur-nav">MOON</p>
+          <div class="status-box visible"></div> 
+        </button>
+        <button class="mbox mars-box">
+          <p class="nav-text">MARS</p>
+          <div class="status-box"></div> 
+        </button>
+        <button class="mbox europa-box">
+          <p class="nav-text">EUROPA</p>
+          <div class="status-box"></div> 
+        </button>
+        <button class="mbox titan-box">
+          <p class="nav-text">TITAN</p>
+          <div class="status-box"></div> 
+        </button>
+      </nav>
+      <h2 id="destination-d">MOON</h2>
+      <p id="destination-p">See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.</p>
+      <hr>
+      <div class="destination-info">
+        <p class="sub-head2">AVG. DISTANCE</p>
+        <p class="sub-head2">EST. TRAVEL TIME</p>
+        <p class="sub-head1" id="destination-l">384,400 KM</p>
+        <p class="sub-head1" id="destination-t">3 DAYS</p>
+      </div>
+
+    </div>
   </main>
+
+  <script src="script.js"></script>
+  
 </body>
 </html>
