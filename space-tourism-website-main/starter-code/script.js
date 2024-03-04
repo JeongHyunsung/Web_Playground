@@ -13,6 +13,12 @@ const crew_n = document.getElementById("crew-n");
 const crew_p = document.getElementById("crew-p");
 const crew_i = document.getElementById("crew-i");
 
+const tech_button = document.querySelectorAll(".tech-subnav div");
+const tech_n = document.getElementById("tech-n");
+const tech_p = document.getElementById("tech-p");
+const tech_i = document.getElementById("tech-i");
+
+
 
 
 import data from './data.js';
@@ -66,4 +72,22 @@ crew_button.forEach((element, index) =>{
         console.log(cur_crew, nxt_crew);
     });
 
+});
+
+tech_button.forEach((element, index) =>{
+    let cur_tech = 0;
+    let nxt_tech = 0;
+    element.addEventListener("click", function(e){
+        const tech_button_cur = document.querySelector(".tech-subnav .cur-nav");
+        if(tech_button_cur.classList.contains("a")){cur_tech = 0;}
+        else if(tech_button_cur.classList.contains("b")){cur_tech = 1;}
+        else{cur_tech = 2;}
+        nxt_tech = index;
+        tech_button[cur_tech].classList.remove("cur-nav");
+        tech_button[nxt_tech].classList.add("cur-nav");
+        tech_n.innerText = data.technology[nxt_tech].name.toUpperCase();
+        tech_p.innerText = data.technology[nxt_tech].description;
+        tech_i.src = data.technology[nxt_tech].images.portrait;
+        console.log(cur_tech, nxt_tech);
+    });
 });

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  
+  <title>Space tourism website</title>
+</head>
+<body class="tech-body">
+  <header>
+    <img class="logo" sizes="48x48" src="./assets/shared/logo.svg"/>
+    <div class="box1"></div>
+    <nav class="box2">
+      <button class="mbox home-box" onclick="location.href='index.html'">
+        <p class="nav-text">00 HOME</p>
+        <div class="status-box"></div> 
+      </button>
+      <button class="mbox dest-box" onclick="location.href='destination.html'">
+        <p class="nav-text">01 DESTINATION</p>
+        <div class="status-box"></div> 
+      </button>
+      <button class="mbox crew-box" onclick="location.href='crew.html'">
+        <p class="nav-text">02 CREW</p>
+        <div class="status-box"></div> 
+      </button>
+      <button class="mbox tech-box cur-nav" onclick="location.href='technology.html'">
+        <p class="nav-text">03 TECHNOLOGY</p>
+        <div class="status-box visible"></div> 
+      </button>
+    </nav>
+  </header>
+  <main>
+    <div class="Content-1 tech-c1">
+        <h5><span class="destination-h5-1">03 </span>SPACE LAUNCH 101</h5>
+        <div class="content-div">
+            <nav class="tech-subnav">
+                <div class="a cur-nav"><h4>1</h4></div>
+                <div class="b"><h4>2</h4></div>
+                <div class="c"><h4>3</h4></div>
+            </nav>
+            <div class="text-div">
+                <p class="nav-text">THE TERMINOLOGY...</p>
+                <h3 id="tech-n">LAUNCH VEHICLE</h3>
+                <p id="tech-p">A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to space, usually to Earth orbit or beyond. Our WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall, it's quite an awe-inspiring sight on the launch pad!</p>
+            </div>
+        </div>
+    </div>
+    <div class="Content-2 tech-c2">
+        <img class="tech-image" id="tech-i" src="./assets/technology/image-launch-vehicle-portrait.jpg">
+    </div>
+  </main>
+  <script type="module" src="script.js"></script>
+  
+</body>
+</html>

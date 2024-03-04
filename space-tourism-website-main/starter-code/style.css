@@ -102,6 +102,10 @@ body.crew-body{
     background-image: url(./assets/crew/background-crew-desktop.jpg);
 }
 
+body.tech-body{
+    background-image: url(./assets/technology/background-technology-desktop.jpg);
+}
+
 
 /* header section */
 header{
@@ -310,6 +314,8 @@ main{
 }
 
 .crew-subnav{
+    margin-bottom: 100px;
+    margin-top: auto;
     width: 132px;
     height: 16px;
     display: flex;
@@ -349,6 +355,69 @@ main{
     width: 615px;
 }
 
+/*TECHNOLOGY section */
+.Content-1.tech-c1{
+    margin-left: 163px;
+    margin-top: 60px;
+    margin-right: 0;
+    gap: 0;
+}
+
+.Content-2.tech-c2{
+    margin-left: 0px;
+    margin-top: 140px;
+    width: auto;
+}
+
+.Content-1.tech-c1 h5{
+    color: var(--col-wh);
+}
+
+.content-div{
+    margin-top: 137px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Content-1.tech-c1 .text-div{
+    width: 470px;
+}
+
+.tech-subnav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: auto;
+    height: 304px;
+    margin-right: 80px;
+}
+
+.tech-subnav div{
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border: 1px solid var(--col-wh);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tech-subnav .cur-nav{
+    background-color: var(--col-wh);
+    color: var(--col-bl);
+}
+
+.tech-image{
+    width: 515px;
+    height: 527px;
+    margin-left: auto;
+}
+
+#tech-n{
+    margin-top: 10px;
+    margin-bottom: 17px;
+}
 
 
 /* media section */
