@@ -9,6 +9,21 @@
   <title>Space tourism website</title>
 </head>
 <body>
+  <div class="mobile-nav visible">
+    <button class="mbox cur-nav home-box" onclick="location.href='index.html'">
+      <p class="nav-text">00 HOME</p>
+    </button>
+    <button class="mbox dest-box" onclick="location.href='destination.html'">
+      <p class="nav-text">01 DESTINATION</p>
+    </button>
+    <button class="mbox crew-box" onclick="location.href='crew.html'">
+      <p class="nav-text">02 CREW</p>
+    </button>
+    <button class="mbox tech-box" onclick="location.href='technology.html'">
+      <p class="nav-text">03 TECHNOLOGY</p>
+    </button>
+
+  </div>
   <header>
     <img class="logo" sizes="48x48" src="./assets/shared/logo.svg"/>
     <div class="box1"></div>
@@ -38,11 +53,11 @@
       <p id="home-p-1">Let’s face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly out of this world experience!</p>
     </div>
     <div class="Content-2">
-      <button class="home-explore-button"><h4 class="home-explore-button-h4">EXPLORE</h4></button>
+      <button class="home-explore-button" onclick="location.href='destination.html'"><h4 class="home-explore-button-h4">EXPLORE</h4></button>
     </div>
   </main>
 
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
   
 </body>
 </html>

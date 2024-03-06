@@ -17,7 +17,7 @@ const tech_button = document.querySelectorAll(".tech-subnav div");
 const tech_n = document.getElementById("tech-n");
 const tech_p = document.getElementById("tech-p");
 const tech_i = document.getElementById("tech-i");
-
+const tech_i_s = document.getElementById("tech-i-s");
 
 
 
@@ -88,6 +88,7 @@ tech_button.forEach((element, index) =>{
         tech_n.innerText = data.technology[nxt_tech].name.toUpperCase();
         tech_p.innerText = data.technology[nxt_tech].description;
         tech_i.src = data.technology[nxt_tech].images.portrait;
+        tech_i_s.src = data.technology[nxt_tech].images.landscape;
         console.log(cur_tech, nxt_tech);
     });
 });
