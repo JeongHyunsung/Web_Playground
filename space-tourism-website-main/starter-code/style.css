@@ -72,7 +72,21 @@ p{
     font-size: 18px;
     color: var(--col-pp);
     text-emphasis: normal;
+}
 
+.status-box.focus{
+    background-color: #979797 !important;
+    visibility: visible;
+    opacity: 50%;
+}
+
+.crew-subnav div.focus{
+    background-color: #979797;
+    opacity: 50%;
+}
+
+.tech-subnav div.focus{
+    opacity: 100%;
 }
 
 *{
@@ -423,9 +437,11 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    opacity: 25%;
 }
 
 .tech-subnav .cur-nav{
+    opacity: 100%;
     background-color: var(--col-wh);
     color: var(--col-bl);
 }
@@ -810,6 +826,7 @@ main{
         background-color: RGBa(255, 255,255,4%);
         backdrop-filter: blur(40px);
         visibility: hidden;
+        z-index: 8;
     }
     .mobile-nav.visible{
         visibility: visible;

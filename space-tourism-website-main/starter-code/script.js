@@ -1,3 +1,6 @@
+const global_button = document.querySelectorAll(".box2 .mbox");
+const global_status = document.querySelectorAll(".box2 .status-box");
+
 const destination_button = document.querySelectorAll(".destination-subnav .mbox");
 const text_button = document.querySelectorAll(".destination-subnav .nav-text");
 const status_button = document.querySelectorAll(".destination-subnav .status-box");
@@ -21,17 +24,39 @@ const tech_i = document.getElementById("tech-i");
 const tech_i_s = document.getElementById("tech-i-s");
 
 const mobile_nav_icon = document.querySelector(".mobile-nav-icon");
-const mobile_nav = document.querySelector(".mobile-nav")
-mobile-nav-icon
+const mobile_nav_icon_a = document.querySelector(".mobile-nav-icon .a");
+const mobile_nav_icon_b = document.querySelector(".mobile-nav-icon .b");
+const mobile_nav = document.querySelector(".mobile-nav");
 
 
 
 import data from './data.js';
 
-destination_button.forEach((element) =>{
+
+global_button.forEach((element, index) =>{
+    element.addEventListener("mouseover", function(e){
+        if(!(element.classList.contains("cur-nav"))){
+            global_status[index].classList.add("focus");
+        }
+    });
+    element.addEventListener("mouseleave", function(e){
+        global_status[index].classList.remove("focus");
+    });
+})
+
+destination_button.forEach((element, index) =>{
     let cur_dest = 0;
     let nxt_dest = 0;
     
+    element.addEventListener("mouseover", function(e){
+        if(!(element.classList.contains("cur-nav"))){
+            status_button[index].classList.add("focus");
+        }
+    });
+    element.addEventListener("mouseleave", function(e){
+        status_button[index].classList.remove("focus");
+    });
+
     element.addEventListener("click", function(e){
         const destination_button_cur = document.querySelector(".destination-subnav .mbox.cur-nav");
         if(element.classList.contains('moon-box')){nxt_dest = 0;}
@@ -59,6 +84,16 @@ destination_button.forEach((element) =>{
 crew_button.forEach((element, index) =>{
     let cur_crew = 0;
     let nxt_crew = 0;
+
+    element.addEventListener("mouseover", function(e){
+        if(!(element.classList.contains("cur-nav"))){
+            crew_button[index].classList.add("focus");
+        }
+    });
+    element.addEventListener("mouseleave", function(e){
+        crew_button[index].classList.remove("focus");
+    });
+
     element.addEventListener("click", function(e){
         const crew_button_cur = document.querySelector(".crew-subnav .cur-nav");
         if(crew_button_cur.classList.contains("a")){cur_crew = 0;}
@@ -83,8 +118,19 @@ crew_button.forEach((element, index) =>{
 });
 
 tech_button.forEach((element, index) =>{
+
     let cur_tech = 0;
     let nxt_tech = 0;
+
+    element.addEventListener("mouseover", function(e){
+        if(!(element.classList.contains("cur-nav"))){
+            tech_button[index].classList.add("focus");
+        }
+    });
+    element.addEventListener("mouseleave", function(e){
+        tech_button[index].classList.remove("focus");
+    });
+
     element.addEventListener("click", function(e){
         const tech_button_cur = document.querySelector(".tech-subnav .cur-nav");
         if(tech_button_cur.classList.contains("a")){cur_tech = 0;}
@@ -99,4 +145,17 @@ tech_button.forEach((element, index) =>{
         tech_i_s.src = data.technology[nxt_tech].images.landscape;
         console.log(cur_tech, nxt_tech);
     });
+});
+
+mobile_nav_icon.addEventListener("click", function(e){
+    if(mobile_nav_icon_a.classList.contains("visible")){
+        mobile_nav_icon_a.classList.remove("visible");
+        mobile_nav_icon_b.classList.add("visible");
+        mobile_nav.classList.add("visible");
+    }
+    else{
+        mobile_nav_icon_b.classList.remove("visible");
+        mobile_nav_icon_a.classList.add("visible");
+        mobile_nav.classList.remove("visible");
+    }
 });
