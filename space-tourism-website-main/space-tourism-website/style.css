@@ -947,6 +947,7 @@ main{
 
 @media screen and (min-width: 1026px){
     .home-body .Content-1{
+        margin-left: 165px;
         margin-top: 250px;
         margin-right: 0;
         width: 450px;
