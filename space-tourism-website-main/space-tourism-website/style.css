@@ -210,12 +210,14 @@ main{
     gap: 23px;
 }
 
+
 .Content-2{
     margin-top: calc(55% - 136px);
     margin-left: 38%;
     display: flex;
     flex-direction: column;
 }
+
 
 .home-explore-button{
     border-radius: 50%;
@@ -943,5 +945,14 @@ main{
     }
 }
 
-
+@media screen and (min-width: 1026px){
+    .home-body .Content-1{
+        margin-top: 250px;
+        margin-right: 0;
+        width: 450px;
+    }
+    .home-body .Content-2{
+        margin-top: 360px;
+    }
+}
 
