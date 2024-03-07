@@ -12,12 +12,17 @@ const crew_m = document.getElementById("crew-m");
 const crew_n = document.getElementById("crew-n");
 const crew_p = document.getElementById("crew-p");
 const crew_i = document.getElementById("crew-i");
+const crew_i_s = document.getElementById("crew-i-s");
 
 const tech_button = document.querySelectorAll(".tech-subnav div");
 const tech_n = document.getElementById("tech-n");
 const tech_p = document.getElementById("tech-p");
 const tech_i = document.getElementById("tech-i");
 const tech_i_s = document.getElementById("tech-i-s");
+
+const mobile_nav_icon = document.querySelector(".mobile-nav-icon");
+const mobile_nav = document.querySelector(".mobile-nav")
+mobile-nav-icon
 
 
 
@@ -67,8 +72,11 @@ crew_button.forEach((element, index) =>{
         crew_n.innerText = data.crew[nxt_crew].name.toUpperCase();
         crew_p.innerText = data.crew[nxt_crew].bio;
         crew_i.src = data.crew[nxt_crew].images.webp;
+        crew_i_s.src = data.crew[nxt_crew].images.webp;
         crew_i.classList.remove('a', 'b', 'c', 'd');
         crew_i.classList.add((nxt_crew == 1)? 'b':(nxt_crew == 2)? 'c':(nxt_crew == 3)? 'd':'a');
+        crew_i_s.classList.remove('a', 'b', 'c', 'd');
+        crew_i_s.classList.add((nxt_crew == 1)? 'b':(nxt_crew == 2)? 'c':(nxt_crew == 3)? 'd':'a');
         console.log(cur_crew, nxt_crew);
     });
 

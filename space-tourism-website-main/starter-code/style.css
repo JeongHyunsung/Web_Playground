@@ -369,6 +369,14 @@ main{
     width: 615px;
 }
 
+#crew-i-s{
+    height: 0;
+}
+
+.hr-mobile{
+    visibility: hidden;
+}
+
 /*TECHNOLOGY section */
 .Content-1.tech-c1{
     margin-left: 163px;
@@ -435,6 +443,10 @@ main{
 
 #tech-i-s{
     height: 0;
+}
+
+.content-div .nav-text{
+    color: var(--col-pp);
 }
 
 /* media section */
@@ -699,6 +711,7 @@ main{
         grid-template-columns: 1fr;
         justify-items: center;
         align-items: start;
+        height:100vh;
     }
 
     body > *{
@@ -732,9 +745,67 @@ main{
     .box2 .visible{
         visibility: hidden;
     }
+    .mobile-nav-icon{
+        margin-left: auto;
+        margin-right: 24px;
+        margin-top: 33px;
+        width: 24px;
+        height: 21px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .mobile-nav-icon > *{
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    .mobile-nav-icon .a{
+        width: 24px;
+        height: 21px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        visibility: hidden;
+    }
+    .mobile-nav-icon .a.visible{
+        visibility: visible;
+    }
+    .mobile-nav-icon .a div{
+        width: 24px;
+        height: 3px;
+        background-color: var(--col-pp);
+        z-index: 10;
+    }
+    .mobile-nav-icon .b.visible{
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        position: relative;
+    }
+    .mobile-nav-icon .b.visible:before, .mobile-nav-icon .b.visible:after{
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        background-color: var(--col-pp);
+        border-radius: 1px;
+        top: 10px;
+        z-index: 10;
+    }
+    .mobile-nav-icon .b.visible:before{
+        -webkit-transform:rotate(45deg);
+        -moz-transform:rotate(45deg);
+        transform:rotate(45deg);
+        left:1px;
+    }
+    .mobile-nav-icon .b.visible:after{
+        -webkit-transform:rotate(-45deg);
+        -moz-transform:rotate(-45deg);
+        transform:rotate(-45deg);
+        right:1px;
+    }
     .mobile-nav{
         width: 60vw;
-        height: 100vh;
+        height: 100%;
         margin-left: auto;
         background-color: RGBa(255, 255,255,4%);
         backdrop-filter: blur(40px);
@@ -746,7 +817,7 @@ main{
     .home-box{
         margin-top: 120px;
     }
-    .mbox{
+    .mobile-nav .mbox{
         height: 50px;
         width: 100%;
     }
@@ -756,167 +827,102 @@ main{
         justify-items: center;
     }
     .Content-1{
-        width: 444px;
-        height: auto;
-        margin-right: 0;
-        margin-left: 0;
-        margin-top: 100px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 23px;
-    }
-    .Content-1 p{
-        text-align: center;
-    }
-    
-    .Content-2{
-        margin-top: 0;
-        margin-left: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        width: 320px;
+        margin-top: 120px;
     }
     
     .home-explore-button{
-        width: 242px;
-        height: 242px;
+        width: 150px;
+        height: 150px;
         margin-top: 80px;
     }
 
     .Content-1.destination-c1{
-        margin-left: 0;
-        width: 100vw;
-        margin-top: 30px;
-        margin-right: 0;
+        margin-top: 90px;
     }
 
     .Content-2.destination-c2{
-        margin-left: 0;
-        width:  570px;
-        margin-top: 50px;
-        gap: 8px;
+        margin-top: 20px;
+        width:  320px;
+        text-align: center;
     }
 
     .Content-1.destination-c1 h5, .Content-1.crew-c1 h5, .Content-1.tech-c1 h5{
-        margin-right: 50vw;
+        margin-right: 0;
     }
+
     .moon{
-        margin-top: 15px;
-        margin-left: 0;
-        width: 300px;
-        height: auto;
+        width: 180px;
     }
     .destination-subnav{
         margin-top: 0;
-    }
-
-    .destination-c2 hr{
-        width: 100%;
+        margin-bottom: 10px;
+        width: 250px;
     }
 
     .destination-info{
+        grid-template-columns: 1fr;
         width: 100%;
         justify-items: center;
+        margin-bottom: 50px;
+    }
+    #destination-l{
+        grid-row: 2;
+        margin-bottom: 15px;
     }
 
     .Content-1.crew-c1{
-        margin-left: 0;
-        width: 100vw;
-        margin-top: 30px;
-        margin-right: 0;
-        height: 350px;
+        margin-top: 90px;
+        width: 320px;
+        height: auto;
     }
-
-    .Content-2.crew-c2{
-        margin-left: 0;
-        margin-top:0;
+    #crew-i-s{
+        height: 222px;
         width: auto;
-        height: 570px;
-        flex-direction: column-reverse;
+        margin-top: 30px;
+    }
+    .hr-mobile{
+        width: 100%;
+        height: 1px;
+        visibility: visible;
+        background-color: #383B4B;
+        margin-bottom: 30px;
     }
     .crew-c1 .crew-box-1{
-        margin-top: 16px;
-        margin-bottom: 40px;
+        width: 320px;
+        order: 3;
     }
-
-    .crew-c1 h4{
-        margin-top: 60px;
-        margin-bottom: 8px;
+    .Content-2.crew-c2{
+        height: 0;
+        width: 0;
+        visibility: hidden;
     }
-
+    #crew-n{
+        order: 2;
+    }
+    #crew-m{
+        order: 1;
+        margin-top: 0;
+    }
     .crew-subnav{
-        margin-bottom: 0;
-        margin-top: auto;
-    }
-    .crew-image.a{
-        height: 572px;
-        width: 456px;
-    }
-
-    .crew-image.b{
-        height: 532px;
-        width: 368px;
-    }
-
-    .crew-image.c{
-        height: 533px;
-        width: 432px;
-    }
-
-    .crew-image.d{
-        height: 532px;
-        width: 540px;
-    }
-
-    .Content-1.tech-c1{
-        margin-left: 0;
-        width: 100vw;
-        margin-top: 30px;
-        margin-right: 0;
+        margin-bottom: 35px;
     }
     
+    .Content-1.tech-c1{
+        margin-top: 90px;
+    }
     .Content-2.tech-c2{
-        height: 0;
-        margin-top: 0;
+        width: 0;
     }
 
     #tech-i-s{
-        height: 310px;
-        width: 100%; 
-        margin-top: 60px;
-        margin-bottom: 50px;
-    }
-    
-    .content-div{
-        margin-top: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        height: 170px;
+        margin-top: 30px;
+        margin-bottom: 35px;
     }
     
     .Content-1.tech-c1 .text-div{
-        width: 440px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .tech-subnav{
-        display: flex;
-        flex-direction: row;
-        align-content: space-between;
-        width: 210px;
-        height: 60px;
-        margin-right: 0;
-        margin-bottom: 44px;
-    }
-    .tech-subnav div{
-        width: 60px;
-        height: 60px;
-    }
-    .tech-image{
-        height: 0;
+        width: 320px;
     }
 }
 
