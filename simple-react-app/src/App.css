@@ -1,7 +1,149 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 
+:root{
+  /* primary */
+  --col-mb: hsl(213, 96%, 18%);
+  --col-ppb: hsl(243, 100%, 62%);
+  --col-pb: hsl(228, 100%, 84%);
+  --col-lb: hsl(206, 94%, 87%);
+  --col-sr: hsl(354, 84%, 57%);
+  /* neutral */
+  --col-cg: hsl(231, 11%, 63%);
+  --col-lg: hsl(229, 24%, 87%);
+  --col-mn: hsl(217, 100%, 97%);
+  --col-ab: hsl(231, 100%, 99%);
+  --col-wh: hsl(0, 0%, 100%);
+}
+
+
+h3{
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--col-mb);
+}
+
+h5{
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--col-wh);
+}
+
+p{
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--col-cg);
+}
+
+
+
 .App {
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   font-style: normal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--col-mn);
+  height: 100vh;
+  width: 100vw;
+}
+
+.App-box{
+  width: min(max(600px, 70vw), calc(max(450px, 80vh) * 8 / 5));
+  height: min(max(450px, 80vh), calc(max(600px, 70vw) * 5 / 8));
+  background-color: var(--col-wh);  
+  border-radius: 2vmin;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+/* HEADER SECTION */
+.header-ct{
+  height: 100%;
+}
+.header-desktop{
+  height: calc(100% - 3vmin);
+  aspect-ratio: 0.4824;
+  margin: 1.5vmin;
+  margin-right: 0;
+  border-radius: 1.5vmin;
+  background-image: url("../public/assets/images/bg-sidebar-desktop.svg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog{
+  margin-top: 2rem;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.catalog .circle{
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--col-pb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--col-pb);
+  font-weight: 700;
+}
+
+.catalog .circle.cur{
+  background-color: var(--col-lb);
+  color: var(--col-mb);
+}
+
+.catalog-info{
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.1rem;
+}
+
+.catalog-info > *{
+  font-size: 0.9rem;
+}
+
+.catalog-info h5{
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+
+/* CONTENT SECTION */
+.content-ct{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-ct > *{
+  width: 70%;
+}
+
+.cont-title{
+  margin-top: 10%;
+  height: 15%;
+}
+
+.cont-title h3{
+  margin-bottom: 0.9rem;
+}
+
+.cont-main{
+  height: 60%;
+}
+
+.cont-control{
+  height: 15%;
 }

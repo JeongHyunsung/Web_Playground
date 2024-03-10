@@ -1,3 +1,10 @@
-body {
+*{
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: calc(min(max(600px, 70vw), calc(max(450px, 80vh) * 8 / 5)) * 0.017);
+}
+
+body{
+  height: 100vh;
 }
