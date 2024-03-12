@@ -1,6 +1,7 @@
 import './App.css';
-
-
+import './utils/findInputError.js'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { useState } from 'react'
 function Head({cur_state}){
   return(
     <div className="header-ct">
@@ -40,7 +41,6 @@ function Cont({cur_state}){
     <div className="content-ct">
       <ContTitle cur_state={cur_state}/>
       <ContMain cur_state={cur_state}/>
-      <ContControl cur_state={cur_state}/>
     </div>
   )
 }
@@ -60,15 +60,26 @@ function ContTitle({cur_state}){
 
 function ContMain({cur_state}){
   let content;
+  const methods = useForm()
+  const onSubmit = methods.handleSubmit(data => {
+    console.log(data);
+  })
+
   switch(cur_state){
     case 0:
       content = 
         <div className="cont-1">
-          <form>
-            <FormSet tp="Name" df="Stephen King"/>
-            <FormSet tp="Email Address" df="stephenking@lorem.com"/>
-            <FormSet tp="Phone Number" df="+1 234 567 890"/>
-          </form>
+          <FormProvider {...methods}>
+            <form onSubmit={e => e.preventDefault()} noValidate id="cont-1-form">
+              <FormSet lb="Name" tp="text" id="name" df="Stephen King"/>
+              <FormSet lb="Email Address" tp="email" id="email" df="stephenking@lorem.com"/>
+              <FormSet lb="Phone Number" tp="text" id="phone-number" df="+1 234 567 890"/>
+            </form>
+            <div className="control-bar">
+              <button className="go-back-button">Go Back</button>
+              <button className="submit-button" onClick={onSubmit}>Next Step</button>
+            </div>
+          </FormProvider>
         </div>;
       break;
     default:
@@ -85,28 +96,27 @@ function ContMain({cur_state}){
   )
 }
 
-function FormSet({tp, df}){
-  let default_value = df;
-  let error_message = "";
-  let blur_str = "this.placeholder=" + {df};
+function FormSet({lb, tp, df, id}){
+  let er = "";
+  let [isInputClicked, setIsInputClicked] = useState(false);
+  const { register, formState: { errors } } = useFormContext();
+
+  
   return(
     <div>
       <div className="form-upper">
-        <h4>{tp}</h4>
-        <p className="error-message">{error_message}</p>
+        <h4>{lb}</h4>
+        <p className="error-message">{er}</p>
       </div>
-      <input className="form-lower" type="text" placeholder={df} onFocus={(e)=>{e.target.placeholder=""}} onBlur={(e)=>{e.target.placeholder=df}}/>
+      <input className="form-lower" type={tp} id={id} placeholder={isInputClicked?"" : "e.g. "+df} onFocus={()=>{setIsInputClicked(true);}} 
+             {...register(lb, {
+              required:{value: true, message:'required'}, 
+              onBlur:()=>{setIsInputClicked(false);}})}/>
     </div>
   )
 }
 
-function ContControl({cur_state}){
-  return(
-    <div className="cont-control">
-
-    </div>
-  )
-}
+/*https://www.freecodecamp.org/news/how-to-validate-forms-in-react/*/
 
 
 /* MAIN */

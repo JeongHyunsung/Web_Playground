@@ -22,6 +22,12 @@ h3{
   color: var(--col-mb);
 }
 
+h4{
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--col-mb);
+}
+
 h5{
   font-size: 1rem;
   font-weight: 400;
@@ -34,6 +40,11 @@ p{
   color: var(--col-cg);
 }
 
+.error-message{
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--col-sr);
+}
 
 
 .App {
@@ -89,7 +100,7 @@ p{
   margin-right: 1rem;
   border-radius: 50%;
   background-color: transparent;
-  border: 2px solid var(--col-pb);
+  border: 2px solid var(--col-lb);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,35 +152,79 @@ p{
 }
 
 .cont-main{
-  height: 60%;
-}
-
-.cont-control{
-  height: 15%;
+  margin-top: 5%;
+  height: 70%;
 }
 
 .form-upper{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
 .form-lower{
   width: 100%;
-  height: 2.5rem;
+  height: 2.8rem;
   border-radius: 0.5rem;
   border: 1px solid var(--col-lg);
   margin-bottom: 1.2rem;
   padding-left: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--col-mb);
+}
+
+.form-lower.warn{
+  border: 1px solid var(--col-sr);
+}
+
+.form-lower:focus{
+  outline: none;
+  border: 1px solid var(--col-ppb);
+}
+
+.form-lower::placeholder{
+  color: var(--col-cg);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .cont-1{
   width: 100%;
-  margin-top: 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cont-1 form{
   display: flex;
   flex-direction: column;
+}
+
+.control-bar{
+  margin-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.control-bar button{
+  width: 25%;
+  height: 3rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: var(--col-wh);
+  color: var(--col-mb);
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+}
+.control-bar .submit-button{
+  background-color: var(--col-mb);
+  color: var(--col-wh);
+}
+.control-bar .go-back-button{
+  position: relative;
+  left: -1.5rem;
 }
