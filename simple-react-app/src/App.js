@@ -1,5 +1,5 @@
 import './App.css';
-import './utils/findInputError.js'
+import {findInputError} from './utils/findInputError.js'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { useState } from 'react'
 function Head({cur_state}){
@@ -71,9 +71,26 @@ function ContMain({cur_state}){
         <div className="cont-1">
           <FormProvider {...methods}>
             <form onSubmit={e => e.preventDefault()} noValidate id="cont-1-form">
-              <FormSet lb="Name" tp="text" id="name" df="Stephen King"/>
-              <FormSet lb="Email Address" tp="email" id="email" df="stephenking@lorem.com"/>
-              <FormSet lb="Phone Number" tp="text" id="phone-number" df="+1 234 567 890"/>
+              <FormSet 
+                lb="Name" 
+                tp="text" id="name" df="Stephen King"
+                validation={{
+                  required:{value: true, message:'This field is required'}, 
+                  }}/>
+              <FormSet 
+                lb="Email Address" 
+                tp="email" id="email" df="stephenking@lorem.com"
+                validation={{
+                  required:{value: true, message:'This field is required'}, 
+                  pattern:{value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, message:'Invalid E-mail address'},
+                  }}/>
+              <FormSet 
+                lb="Phone Number" 
+                tp="text" id="phone-number" df="+1 234 567 890"
+                validation={{
+                  required:{value: true, message:'This field is required'}, 
+                  }}
+                />
             </form>
             <div className="control-bar">
               <button className="go-back-button">Go Back</button>
@@ -96,23 +113,27 @@ function ContMain({cur_state}){
   )
 }
 
-function FormSet({lb, tp, df, id}){
-  let er = "";
+function FormSet({lb, tp, df, id, validation}){
   let [isInputClicked, setIsInputClicked] = useState(false);
   const { register, formState: { errors } } = useFormContext();
-
+  Object.assign(validation, {onBlur:()=>{setIsInputClicked(false);}})
+  let er = findInputError(errors, lb);
   
   return(
     <div>
       <div className="form-upper">
         <h4>{lb}</h4>
-        <p className="error-message">{er}</p>
+        <Inputerror message = {er}></Inputerror>
       </div>
       <input className="form-lower" type={tp} id={id} placeholder={isInputClicked?"" : "e.g. "+df} onFocus={()=>{setIsInputClicked(true);}} 
-             {...register(lb, {
-              required:{value: true, message:'required'}, 
-              onBlur:()=>{setIsInputClicked(false);}})}/>
+             {...register(lb, validation)}/>
     </div>
+  )
+}
+
+function Inputerror({message}){
+  return(
+    <p className="error-message">{message}</p>
   )
 }
 
