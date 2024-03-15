@@ -46,6 +46,12 @@ p{
   color: var(--col-sr);
 }
 
+.container .sub-1{
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--col-mb);
+}
+
 
 .App {
   font-family: "Ubuntu", sans-serif;
@@ -143,7 +149,7 @@ p{
 }
 
 .cont-title{
-  margin-top: 10%;
+  margin-top: 8%;
   height: 15%;
 }
 
@@ -153,8 +159,24 @@ p{
 
 .cont-main{
   margin-top: 5%;
-  height: 70%;
+  height: 72%;
 }
+
+.cont{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/*CONTENT 1*/
+.cont.a form{
+  display: flex;
+  flex-direction: column;
+}
+
 
 .form-upper{
   display: flex;
@@ -191,21 +213,9 @@ p{
   font-weight: 700;
 }
 
-.cont-1{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.cont-1 form{
-  display: flex;
-  flex-direction: column;
-}
 
 .control-bar{
-  margin-bottom: 5%;
+  height: 20%;
   display: flex;
   justify-content: space-between;
 }
@@ -225,6 +235,85 @@ p{
   color: var(--col-wh);
 }
 .control-bar .go-back-button{
+  font-size: 1rem;
+  color: var(--col-cg);
   position: relative;
   left: -1.5rem;
 }
+
+
+/*CONTENT 2*/
+.b .option-box{
+  width: 100%;
+  height: 45%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option{
+  width: 30%;
+  height: 100%;
+  display: flex;
+  border-radius: 0.5rem;
+  border: 1px solid var(--col-cg);
+  justify-content: center;
+  align-items: center;
+}
+
+.option .container{
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  gap: 0.3rem;
+}
+
+.b h5{
+  color: var(--col-mb);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.option h5{
+  margin-top: auto;
+}
+
+.option p{
+  font-size: 0.9rem;
+}
+.option img{
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.toggle-box{
+  width: 100%;
+  border-radius: 0.4rem;
+  margin-top: 8%;
+  height: 10%;
+  margin-bottom: 17%;
+  background-color: var(--col-mn);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.toggle-section{
+  width: 2.2rem;
+  height: 1.2rem;
+  border-radius: 0.6rem;
+  margin: 1.8rem;
+  background-color: var(--col-mb);
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button{
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 0.35rem;
+  background-color: var(--col-wh);
+  border: 0;
+  position: relative;
+}
+
+
