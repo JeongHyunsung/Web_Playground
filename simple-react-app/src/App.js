@@ -36,11 +36,11 @@ function Catalog({state, cur_state}){
   )
 }
 
-function Cont({cur_state, cas}){
+function Cont({cur_state, cas, dt}){
   return(
     <div className="content-ct">
       <ContTitle cur_state={cur_state}/>
-      <ContMain cur_state={cur_state} cas ={cas}/>
+      <ContMain cur_state={cur_state} cas ={cas} dt ={dt}/>
     </div>
   )
 }
@@ -58,14 +58,14 @@ function ContTitle({cur_state}){
   )
 }
 
-function ContMain({cur_state, cas}){
+function ContMain({cur_state, cas, dt}){
   let content;
   switch(cur_state){
     case 0:
-      content = <Cont1 cas = {cas}></Cont1>
+      content = <Cont1 cas = {cas} dt = {dt}></Cont1>
       break;
     case 1:
-      content = <Cont2 cas = {cas}></Cont2>
+      content = <Cont2 cas = {cas} dt = {dt}></Cont2>
       break;
 
     default:
@@ -82,31 +82,35 @@ function ContMain({cur_state, cas}){
   )
 }
 
-function Cont1({cas}){
+function Cont1({cas, dt}){
   const methods = useForm()
   const onSubmit = methods.handleSubmit(data => {
-    console.log(data);
+    dt.a.Name=data.Name;
+    dt.a.Email=data["Email Address"];
+    dt.a.Phone=data["Phone Number"];
+    dt.complete[0] = true;
     cas(1);
+    console.log(dt);
   })
   return(
     <div className="cont a">
       <FormProvider {...methods}>
         <form onSubmit={e => e.preventDefault()} noValidate id="cont-1-form">
           <FormSet 
-            lb="Name" 
+            lb="Name" vl={(dt.complete[0])?dt.a.Name:""}
             tp="text" id="name" df="Stephen King"
             validation={{
               required:{value: true, message:'This field is required'}, 
             }}/>
           <FormSet 
-            lb="Email Address" 
+            lb="Email Address" vl={(dt.complete[0]===true)?dt.a.Email:""}
             tp="email" id="email" df="stephenking@lorem.com"
             validation={{
               required:{value: true, message:'This field is required'}, 
               pattern:{value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, message:'Invalid E-mail address'},
             }}/>
           <FormSet 
-            lb="Phone Number" 
+            lb="Phone Number" vl={(dt.complete[0])?dt.a.Phone:""}
             tp="text" id="phone-number" df="+1 234 567 890"
             validation={{
               required:{value: true, message:'This field is required'}, 
@@ -121,7 +125,7 @@ function Cont1({cas}){
   )
 }
 
-function FormSet({lb, tp, df, id, validation}){
+function FormSet({lb, tp, vl, df, id, validation}){
   let [isInputClicked, setIsInputClicked] = useState(false);
   const { register, formState: { errors } } = useFormContext();
   Object.assign(validation, {onBlur:()=>{setIsInputClicked(false);}})
@@ -133,16 +137,22 @@ function FormSet({lb, tp, df, id, validation}){
         <h4>{lb}</h4>
         <p className="error-message">{er}</p>
       </div>
-      <input className="form-lower" type={tp} id={id} placeholder={isInputClicked?"" : "e.g. "+df} onFocus={()=>{setIsInputClicked(true);}} 
+      <input className="form-lower" type={tp} id={id} defaultValue={vl} placeholder={isInputClicked?"" : "e.g. "+df} onFocus={()=>{setIsInputClicked(true);}} 
              {...register(lb, validation)}/>
     </div>
   )
 }
 
-function Cont2(){
+function Cont2({cas, dt}){
   const [isyear, setIsyear] = useState(false);
   const [clicked, setClicked] = useState(0);
   const [over, setOver] = useState(-1);
+  function onSubmit(){
+    dt.b.option = clicked;
+    dt.b.monthly = !(isyear);
+    console.log(dt);
+    cas(2);
+  }
   return(
     <div className="cont b">
       <div className ="option-box">
@@ -164,8 +174,8 @@ function Cont2(){
         <h5 style={{color:(isyear)?"var(--col-mb)":"var(--col-cg)"}}>Yearly</h5>
       </div>
       <div className="control-bar">
-        <button className="go-back-button">Go Back</button>
-        <button className="submit-button">Next Step</button>
+        <button className="go-back-button" onClick={()=>{cas(0)}}>Go Back</button>
+        <button className="submit-button" onClick={onSubmit}>Next Step</button>
       </div>
 
     </div>
@@ -179,7 +189,7 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
       style = {{borderColor: (cur_num===cl||cur_num===ov)?"var(--col-ppb)":"var(--col-cg)", backgroundColor:(cur_num===cl)?"var(--col-mn)":"var(--col-wh)"}}
       onClick = {()=>{set_cl(cur_num)}}
       onMouseOver = {()=>{set_ov(cur_num)}}
-      onMouseDown = {()=>{set_ov(-1)}}>
+      onMouseLeave = {()=>{set_ov(-1)}}>
 
       <div className = "container">
         <img src={im} alt=""/>
@@ -198,7 +208,8 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
 
 /* MAIN */
 function App() {
-  const [appstate, setAppstate] = useState(1);
+  let FormData = {a:{Name:"", Email:"", Phone:""}, b:{monthly:false, option:-1}, c:{}, d:{}, complete:[false, false, false, false]};
+  const [appstate, setAppstate] = useState(0);
   const c_app = (n) =>{
     setAppstate(n);
   }
@@ -208,7 +219,7 @@ function App() {
     <div className="App">
       <div className="App-box">
         <Head cur_state={appstate}/>
-        <Cont cur_state={appstate} cas ={c_app}/>
+        <Cont cur_state={appstate} cas ={c_app} dt={FormData}/>
       </div>
     </div>
   );
