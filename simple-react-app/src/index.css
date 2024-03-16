@@ -8,3 +8,9 @@
 body{
   height: 100vh;
 }
+
+@media (max-width: 650px){
+  *{
+    font-size: 4.5vw;
+  }
+}

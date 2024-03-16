@@ -3,20 +3,20 @@ import {findInputError} from './utils/findInputError.js'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { useMediaQuery } from 'react-responsive'
 import { useState } from 'react'
-function Head({cur_state}){
+function Head({cur_state, mb}){
   return(
     <div className="header-ct">
-      {<div className="header-desktop">
-        <Catalog state={0} cur_state={cur_state}/>
-        <Catalog state={1} cur_state={cur_state}/>
-        <Catalog state={2} cur_state={cur_state}/>
-        <Catalog state={3} cur_state={cur_state}/>
-      </div>}
+      <div className="header-desktop">
+        <Catalog state={0} cur_state={cur_state} mb={mb}/>
+        <Catalog state={1} cur_state={cur_state} mb={mb}/>
+        <Catalog state={2} cur_state={cur_state} mb={mb}/>
+        <Catalog state={3} cur_state={cur_state} mb={mb}/>
+      </div>
     </div>
   )
 }
 
-function Catalog({state, cur_state}){
+function Catalog({state, cur_state, mb}){
   let circle;
   const data = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
   console.log(state, cur_state);
@@ -29,10 +29,11 @@ function Catalog({state, cur_state}){
   return(
     <div className="catalog">
       {circle}
+      {!mb &&
       <div className="catalog-info">
         <p>STEP {state+1}</p>
         <h5>{data[state]}</h5>
-      </div>
+      </div>}
     </div>
   )
 }
@@ -42,6 +43,16 @@ function Cont({cur_state, cas, dt, sdt}){
     <div className="content-ct">
       <ContTitle cur_state={cur_state}/>
       <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}/>
+    </div>
+  )
+}
+function ContMobile({cur_state, cas, dt, sdt}){
+  return(
+    <div className="content-ct">
+      <div className="content-ct-mobile">
+        <ContTitle cur_state={cur_state}/>
+        <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}/>
+      </div>
     </div>
   )
 }
@@ -348,6 +359,7 @@ function Cont5(){
 function App() {
   const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:0}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
   const [appstate, setAppstate] = useState(0);
+  const isMobile = useMediaQuery({ maxWidth: 650 })
   const c_app = (n) =>{
     setAppstate(n);
   }
@@ -361,8 +373,9 @@ function App() {
   return (
     <div className="App">
       <div className="App-box">
-        <Head cur_state={appstate}/>
-        <Cont cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>
+        <Head cur_state={appstate} mb={isMobile}/>
+        {!isMobile && <Cont cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>}
+        {isMobile && <ContMobile cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>}
       </div>
     </div>
   );

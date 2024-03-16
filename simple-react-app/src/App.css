@@ -111,7 +111,7 @@ p{
   margin-right: 1rem;
   border-radius: 50%;
   background-color: transparent;
-  border: 2px solid var(--col-lb);
+  border: 1px solid var(--col-lb);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -450,6 +450,14 @@ p{
   text-align: center;
 }
 
+.content-ct-mobile{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--col-wh);
+  border-radius: 0.8rem;
+  align-items: center;
+}
+
 @media (max-width: 650px){
   .App-box{
     width: 100%;
@@ -458,4 +466,53 @@ p{
     border-radius: 0;
     flex-direction: column;
   }
+  .header-ct{
+    z-index: 1;
+    width: 100%;
+    height: auto;
+  }
+  .header-desktop{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2.18;
+    margin: 0;
+    border-radius: 0;
+    background-image: url("../public/assets/images/bg-sidebar-mobile.svg");
+    background-size: 100vw, auto;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .catalog{
+    margin-top: 2.2rem;
+    margin-left: 0rem;
+    align-items: flex-start;
+  }
+  
+  .catalog .circle{
+    width: 2.2rem;
+    height: 2.2rem;
+    margin-right: 0rem;
+  }
+  
+  .catalog .circle.cur{
+    background-color: var(--col-lb);
+    color: var(--col-mb);
+  }
+  
+  .content-ct{
+    width: 100%;
+    height: auto;
+  }  
+
+  .content-ct > *{
+    width: 90%;
+  }
+  .content-ct-mobile > *{
+    width: 90%;
+    position: relative;
+    top: -20%;
+    z-index: 2
+  }
+
 }
