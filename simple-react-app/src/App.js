@@ -211,13 +211,36 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
 }
 
 function Cont3({cas, dt, sdt}){
+  const [isClicked, setIsClicked] = useState([true, true, false]);
+  const [over, setOver] = useState(-1);
+  function setCl_f(n){
+    let cp = [...isClicked];
+    cp[n] = !(cp[n]);
+    setIsClicked(cp);
+  }
   function onSubmit(){
+    sdt("c", "opt1", isClicked[0]);
+    sdt("c", "opt2", isClicked[1]);
+    sdt("c", "opt3", isClicked[2]);
+    sdt("complete", "value", 3);
     cas(3);
+    console.log(dt);
   }
   return(
     <div className="cont c">
       <div className="option-box">
-        
+        <OptionBar 
+          nm="Online Service" dc="Access to multiplayer games"
+          pr={(dt.b.monthly)?1:10}
+          cur_num={0} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
+        <OptionBar 
+          nm="Larger Storage" dc="Extra 1TB of cloud save"
+          pr={(dt.b.monthly)?2:20}
+          cur_num={1} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
+        <OptionBar 
+          nm="Customizable Profile" dc="Custom theme on your profile"
+          pr={(dt.b.monthly)?2:20}
+          cur_num={2} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
       </div>
 
       <div className="control-bar">
@@ -227,8 +250,31 @@ function Cont3({cas, dt, sdt}){
     </div>
     
   )
+}
 
+function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
+  return(
+    <div 
+      className="option"
+      style={{borderColor: (cl[cur_num] || cur_num === ov)?"var(--col-ppb)":"var(--col-cg)",
+              backgroundColor: (cl[cur_num])?"var(--col-mn)":"var(--col-wh)"}}
+      onClick={()=>{set_cl(cur_num);}}
+      onMouseOver={()=>{!cl[cur_num] && set_ov(cur_num);}}
+      onMouseLeave={()=>{set_ov(-1);}}>
+      <span 
+        className="checkbox" 
+        style={{borderColor: (cl[cur_num])?"var(--col-ppb)":"var(--col-cg)", 
+                backgroundColor: (cl[cur_num])?"var(--col-ppb)":"var(--col-wh)"}}>
+        {cl[cur_num] && <img className="check-img" src="assets/images/icon-checkmark.svg" alt=""></img>}
+      </span>
+      <div className="text-box">
+        <h5>{nm}</h5>
+        <p>{dc}</p>
+      </div>
+      <p className="pricing">{"+$" + pr + "/mo"}</p>
 
+    </div>
+  )
 }
 
 /*https://www.freecodecamp.org/news/how-to-validate-forms-in-react/*/
@@ -236,7 +282,7 @@ function Cont3({cas, dt, sdt}){
 
 /* MAIN */
 function App() {
-  const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:false, option:-1}, c:{}, d:{}, complete:{value:0}});
+  const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:-1}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
   const [appstate, setAppstate] = useState(2);
   const c_app = (n) =>{
     setAppstate(n);

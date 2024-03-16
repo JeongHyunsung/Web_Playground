@@ -52,6 +52,11 @@ p{
   color: var(--col-mb);
 }
 
+.pricing{
+  color: var(--col-ppb);
+  font-weight: 500;
+}
+
 
 .App {
   font-family: "Ubuntu", sans-serif;
@@ -250,7 +255,7 @@ p{
   justify-content: space-between;
 }
 
-.option{
+.b .option{
   width: 30%;
   height: 100%;
   display: flex;
@@ -268,19 +273,19 @@ p{
   gap: 0.3rem;
 }
 
-.b h5{
+.b h5, .c h5{
   color: var(--col-mb);
   font-size: 1rem;
   font-weight: 700;
 }
-.option h5{
+.b .option h5{
   margin-top: auto;
 }
 
 .option p{
   font-size: 0.9rem;
 }
-.option img{
+.b .option img{
   width: 2.8rem;
   height: 2.8rem;
 }
@@ -290,7 +295,7 @@ p{
   border-radius: 0.4rem;
   margin-top: 8%;
   height: 10%;
-  margin-bottom: 17%;
+  margin-bottom: 15%;
   background-color: var(--col-mn);
   display: flex;
   justify-content: center;
@@ -321,5 +326,41 @@ p{
   width: 100%;
   height: 80%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 4%;
+}
+
+.c .option{
+  width: 100%;
+  height: 23%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--col-cg);
+  display: flex;
+  align-items: center;
+}
+
+.checkbox{
+  margin-left: 1.4rem;
+  margin-right: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 20%;
+  border: 1px solid var(--col-cg);
+}
+
+.c .checkbox img{
+  width: 0.8rem;
+  height: 0.6rem;
+}
+
+.c .text-box{
+  width: calc(82% - 4.1rem);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
 }
