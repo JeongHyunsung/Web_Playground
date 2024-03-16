@@ -70,6 +70,9 @@ function ContMain({cur_state, cas, dt, sdt}){
     case 2:
       content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt}></Cont3>
       break;
+    case 3:
+      content = <Cont4 cas = {cas} dt = {dt}></Cont4>
+      break;
     default:
       content =
         <div className="cont-5">
@@ -211,7 +214,7 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
 }
 
 function Cont3({cas, dt, sdt}){
-  const [isClicked, setIsClicked] = useState([true, true, false]);
+  const [isClicked, setIsClicked] = useState((dt.complete.value >= 3)?[dt.c.opt1, dt.c.opt2, dt.c.opt3]:[true, true, false]);
   const [over, setOver] = useState(-1);
   function setCl_f(n){
     let cp = [...isClicked];
@@ -231,15 +234,15 @@ function Cont3({cas, dt, sdt}){
       <div className="option-box">
         <OptionBar 
           nm="Online Service" dc="Access to multiplayer games"
-          pr={(dt.b.monthly)?1:10}
+          pr={(dt.b.monthly)?"1/mo":"10/yr"}
           cur_num={0} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
         <OptionBar 
           nm="Larger Storage" dc="Extra 1TB of cloud save"
-          pr={(dt.b.monthly)?2:20}
+          pr={(dt.b.monthly)?"2/mo":"20/yr"}
           cur_num={1} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
         <OptionBar 
           nm="Customizable Profile" dc="Custom theme on your profile"
-          pr={(dt.b.monthly)?2:20}
+          pr={(dt.b.monthly)?"2/mo":"20/yr"}
           cur_num={2} cl={isClicked} set_cl={setCl_f} ov={over} set_ov={setOver}/>
       </div>
 
@@ -271,8 +274,60 @@ function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
         <h5>{nm}</h5>
         <p>{dc}</p>
       </div>
-      <p className="pricing">{"+$" + pr + "/mo"}</p>
+      <p className="pricing">{"+$" + pr}</p>
+    </div>
+  )
+}
 
+function Cont4({cas, dt}){
+  const pr_atr = (dt.b.monthly===true)?"/mo":"/yr";
+  let g_price;
+  let l1 = (dt.b.option===0)?"Arcade":(dt.b.option===1)?"Advanced":"Pro";
+  let r1 = (dt.b.option===0)?9:(dt.b.option===1)?12:15;
+  l1 += (dt.b.monthly===true)?" (Monthly)":" (Yearly)";
+  r1 *= (dt.b.monthly===true)? 1:10;
+  g_price = r1;
+  r1 += pr_atr;
+  console.log(dt.c);
+  g_price += (dt.c.opt1)?1:0;
+  g_price += (dt.c.opt2)?2:0;
+  g_price += (dt.c.opt3)?2:0;
+  g_price *= (dt.b.monthly)?1:10;
+  g_price += pr_atr;
+  
+  console.log(l1, r1);
+  function onSubmit(){
+    cas(5);
+  }
+  return(
+    <div className="cont d">
+      <div className="price-outer">
+        <div className="price-inner-padding">
+          <div className="price-inner">
+            <div className="c-up">
+              <div className="c-up-l">
+                <h5>{l1}</h5>
+                <p>Change</p>
+              </div>
+              <h5>{"$" + r1}</h5>
+            </div>
+            <hr></hr>
+            <div className="c-dn">
+              {dt.c.opt1 && <div className="c-dn-l"><p>Online Service</p><h5>{(dt.b.monthly===true)?"+$1/mo":"+$10/yr"}</h5></div>}
+              {dt.c.opt2 && <div className="c-dn-l"><p>Larger Storage</p><h5>{(dt.b.monthly===true)?"+$2/mo":"+$20/yr"}</h5></div>}
+              {dt.c.opt3 && <div className="c-dn-l"><p>Customizable Profile</p><h5>{(dt.b.monthly===true)?"+$2/mo":"+$20/yr"}</h5></div>}
+            </div>
+          </div>
+        </div>
+        <div className="price-summary">
+          <p>{(dt.b.monthly===true)?"Total (per month)":"Total (per year)"}</p>
+          <h5>{"+$" + g_price}</h5>
+        </div>
+      </div>
+      <div className="control-bar">
+        <button className="go-back-button" onClick={()=>{cas(2)}}>Go Back</button>
+        <button className="submit-button" onClick={onSubmit}>Confirm</button>
+      </div>
     </div>
   )
 }
@@ -282,7 +337,7 @@ function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
 
 /* MAIN */
 function App() {
-  const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:-1}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
+  const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:0}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
   const [appstate, setAppstate] = useState(2);
   const c_app = (n) =>{
     setAppstate(n);

@@ -239,6 +239,9 @@ p{
   background-color: var(--col-mb);
   color: var(--col-wh);
 }
+.d .control-bar .submit-button{
+  background-color: var(--col-ppb);
+}
 .control-bar .go-back-button{
   font-size: 1rem;
   color: var(--col-cg);
@@ -273,7 +276,7 @@ p{
   gap: 0.3rem;
 }
 
-.b h5, .c h5{
+.b h5, .c h5, .d h5{
   color: var(--col-mb);
   font-size: 1rem;
   font-weight: 700;
@@ -363,4 +366,72 @@ p{
   flex-direction: column;
   justify-content: center;
   gap: 0.4rem;
+}
+
+/*CONTENT 4*/
+.price-outer{
+  width: 100%;
+  height: 80%;
+}
+.price-inner-padding{
+  width: 100%;
+  background-color: var(--col-mn);
+  border-radius: 0.6rem;
+}
+.price-inner{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  gap: 1.5rem;
+}
+.price-inner p{
+  font-size: 0.8rem;
+}
+.c-up{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.c-up-l{
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.c-up-l p{
+  text-decoration : underline;
+  text-decoration-thickness: 2px;
+}
+.d hr{
+  border: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--col-lg);
+}
+.c-dn{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.c-dn-l{
+  display: flex;
+  justify-content: space-between;
+}
+.c-dn h5{
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+.price-summary{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4rem;
+}
+.price-summary p{
+  font-size: 0.9rem;
+}
+.price-summary h5{
+  color: var(--col-ppb);
+  font-size: 1.3rem;
+
 }
