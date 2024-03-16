@@ -1,16 +1,17 @@
 import './App.css';
 import {findInputError} from './utils/findInputError.js'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { useMediaQuery } from 'react-responsive'
 import { useState } from 'react'
 function Head({cur_state}){
   return(
     <div className="header-ct">
-      <div className="header-desktop">
+      {<div className="header-desktop">
         <Catalog state={0} cur_state={cur_state}/>
         <Catalog state={1} cur_state={cur_state}/>
         <Catalog state={2} cur_state={cur_state}/>
         <Catalog state={3} cur_state={cur_state}/>
-      </div>
+      </div>}
     </div>
   )
 }
@@ -19,7 +20,7 @@ function Catalog({state, cur_state}){
   let circle;
   const data = ["YOUR INFO", "SELECT PLAN", "ADD-ONS", "SUMMARY"];
   console.log(state, cur_state);
-  if(state === cur_state){
+  if(state === cur_state || (state === 3 && cur_state === 5)){
     circle = <div className="circle cur">{state+1}</div>
   }
   else{
@@ -52,8 +53,8 @@ function ContTitle({cur_state}){
                 ["Finishing up", "Double-check everything looks OK before confirming."]];
   return(
     <div className="cont-title">
-      <h3>{data[cur_state][0]}</h3>
-      <p>{data[cur_state][1]}</p>
+      {cur_state < 4 &&  <h3>{data[cur_state][0]}</h3>}
+      {cur_state < 4 &&  <p>{data[cur_state][1]}</p>}
     </div>
   )
 }
@@ -74,10 +75,7 @@ function ContMain({cur_state, cas, dt, sdt}){
       content = <Cont4 cas = {cas} dt = {dt}></Cont4>
       break;
     default:
-      content =
-        <div className="cont-5">
-          
-        </div>
+      content = <Cont5/>
   }
 
   return(
@@ -288,11 +286,11 @@ function Cont4({cas, dt}){
   r1 *= (dt.b.monthly===true)? 1:10;
   g_price = r1;
   r1 += pr_atr;
-  console.log(dt.c);
-  g_price += (dt.c.opt1)?1:0;
-  g_price += (dt.c.opt2)?2:0;
-  g_price += (dt.c.opt3)?2:0;
-  g_price *= (dt.b.monthly)?1:10;
+  let add_price = (dt.c.opt1)?1:0;
+  add_price += (dt.c.opt2)?2:0;
+  add_price += (dt.c.opt3)?2:0;
+  add_price *= (dt.b.monthly)?1:10;
+  g_price += add_price;
   g_price += pr_atr;
   
   console.log(l1, r1);
@@ -307,7 +305,7 @@ function Cont4({cas, dt}){
             <div className="c-up">
               <div className="c-up-l">
                 <h5>{l1}</h5>
-                <p>Change</p>
+                <p onClick={()=>cas(1)}>Change</p>
               </div>
               <h5>{"$" + r1}</h5>
             </div>
@@ -332,13 +330,24 @@ function Cont4({cas, dt}){
   )
 }
 
+function Cont5(){
+  return (
+  <div className="cont e">
+    <img src="assets/images/icon-thank-you.svg" alt=""></img>
+    <h3>Thank You!</h3>
+    <p>Thanks for confirming your subscription! We hope you have fun using our platform.
+       If you ever need support, please feel free to email us ar support@loremgaming.com.</p>
+  </div>
+  )
+}
+
 /*https://www.freecodecamp.org/news/how-to-validate-forms-in-react/*/
 
 
 /* MAIN */
 function App() {
   const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:0}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
-  const [appstate, setAppstate] = useState(2);
+  const [appstate, setAppstate] = useState(0);
   const c_app = (n) =>{
     setAppstate(n);
   }

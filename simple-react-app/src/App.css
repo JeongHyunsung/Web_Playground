@@ -433,5 +433,29 @@ p{
 .price-summary h5{
   color: var(--col-ppb);
   font-size: 1.3rem;
+}
 
+/*CONTENT 5*/
+.cont.e{
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.e h3{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.e p{
+  line-height: 1.6rem;
+  text-align: center;
+}
+
+@media (max-width: 650px){
+  .App-box{
+    width: 100%;
+    height: 100%;
+    background-color: var(--col-mn);  
+    border-radius: 0;
+    flex-direction: column;
+  }
 }
