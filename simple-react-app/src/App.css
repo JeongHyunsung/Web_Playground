@@ -316,4 +316,10 @@ p{
   position: relative;
 }
 
-
+/*CONTENT-3*/
+.c .option-box{
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: space-between;
+}

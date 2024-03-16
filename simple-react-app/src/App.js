@@ -36,11 +36,11 @@ function Catalog({state, cur_state}){
   )
 }
 
-function Cont({cur_state, cas, dt}){
+function Cont({cur_state, cas, dt, sdt}){
   return(
     <div className="content-ct">
       <ContTitle cur_state={cur_state}/>
-      <ContMain cur_state={cur_state} cas ={cas} dt ={dt}/>
+      <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}/>
     </div>
   )
 }
@@ -58,16 +58,18 @@ function ContTitle({cur_state}){
   )
 }
 
-function ContMain({cur_state, cas, dt}){
+function ContMain({cur_state, cas, dt, sdt}){
   let content;
   switch(cur_state){
     case 0:
-      content = <Cont1 cas = {cas} dt = {dt}></Cont1>
+      content = <Cont1 cas = {cas} dt = {dt} sdt = {sdt}></Cont1>
       break;
     case 1:
-      content = <Cont2 cas = {cas} dt = {dt}></Cont2>
+      content = <Cont2 cas = {cas} dt = {dt} sdt = {sdt}></Cont2>
       break;
-
+    case 2:
+      content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt}></Cont3>
+      break;
     default:
       content =
         <div className="cont-5">
@@ -82,13 +84,15 @@ function ContMain({cur_state, cas, dt}){
   )
 }
 
-function Cont1({cas, dt}){
+function Cont1({cas, dt, sdt}){
   const methods = useForm()
   const onSubmit = methods.handleSubmit(data => {
-    dt.a.Name=data.Name;
-    dt.a.Email=data["Email Address"];
-    dt.a.Phone=data["Phone Number"];
-    dt.complete[0] = true;
+    sdt("a", "Name", data.Name);
+    sdt("a", "Email", data["Email Address"]);
+    sdt("a", "Phone", data["Phone Number"]);
+    if(dt.complete.value < 1){
+      sdt("complete", "value", 1);
+    }
     cas(1);
     console.log(dt);
   })
@@ -97,20 +101,20 @@ function Cont1({cas, dt}){
       <FormProvider {...methods}>
         <form onSubmit={e => e.preventDefault()} noValidate id="cont-1-form">
           <FormSet 
-            lb="Name" vl={(dt.complete[0])?dt.a.Name:""}
+            lb="Name" vl={(dt.complete.value >= 1)?dt.a.Name:""}
             tp="text" id="name" df="Stephen King"
             validation={{
               required:{value: true, message:'This field is required'}, 
             }}/>
           <FormSet 
-            lb="Email Address" vl={(dt.complete[0]===true)?dt.a.Email:""}
+            lb="Email Address" vl={(dt.complete.value >= 1)?dt.a.Email:""}
             tp="email" id="email" df="stephenking@lorem.com"
             validation={{
               required:{value: true, message:'This field is required'}, 
               pattern:{value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, message:'Invalid E-mail address'},
             }}/>
           <FormSet 
-            lb="Phone Number" vl={(dt.complete[0])?dt.a.Phone:""}
+            lb="Phone Number" vl={(dt.complete.value >= 1)?dt.a.Phone:""}
             tp="text" id="phone-number" df="+1 234 567 890"
             validation={{
               required:{value: true, message:'This field is required'}, 
@@ -126,6 +130,8 @@ function Cont1({cas, dt}){
 }
 
 function FormSet({lb, tp, vl, df, id, validation}){
+  console.log(id, vl);
+  
   let [isInputClicked, setIsInputClicked] = useState(false);
   const { register, formState: { errors } } = useFormContext();
   Object.assign(validation, {onBlur:()=>{setIsInputClicked(false);}})
@@ -143,15 +149,18 @@ function FormSet({lb, tp, vl, df, id, validation}){
   )
 }
 
-function Cont2({cas, dt}){
-  const [isyear, setIsyear] = useState(false);
-  const [clicked, setClicked] = useState(0);
+function Cont2({cas, dt, sdt}){
+  const [isyear, setIsyear] = useState((dt.complete.value >= 2)?!(dt.b.monthly):false);
+  const [clicked, setClicked] = useState((dt.complete.value >= 2)?dt.b.option:0);
   const [over, setOver] = useState(-1);
   function onSubmit(){
-    dt.b.option = clicked;
-    dt.b.monthly = !(isyear);
-    console.log(dt);
+    sdt("b", "option", clicked);
+    sdt("b", "monthly", !(isyear));
+    if(dt.complete.value < 2){
+      sdt("complete", "value", 2);
+    }
     cas(2);
+    console.log(dt);
   }
   return(
     <div className="cont b">
@@ -201,17 +210,41 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
   )
 }
 
+function Cont3({cas, dt, sdt}){
+  function onSubmit(){
+    cas(3);
+  }
+  return(
+    <div className="cont c">
+      <div className="option-box">
+        
+      </div>
 
+      <div className="control-bar">
+        <button className="go-back-button" onClick={()=>{cas(1)}}>Go Back</button>
+        <button className="submit-button" onClick={onSubmit}>Next Step</button>
+      </div>
+    </div>
+    
+  )
+
+
+}
 
 /*https://www.freecodecamp.org/news/how-to-validate-forms-in-react/*/
 
 
 /* MAIN */
 function App() {
-  let FormData = {a:{Name:"", Email:"", Phone:""}, b:{monthly:false, option:-1}, c:{}, d:{}, complete:[false, false, false, false]};
-  const [appstate, setAppstate] = useState(0);
+  const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:false, option:-1}, c:{}, d:{}, complete:{value:0}});
+  const [appstate, setAppstate] = useState(2);
   const c_app = (n) =>{
     setAppstate(n);
+  }
+  function setData_f(k1, k2, v){
+    let cp = {...FormData};
+    cp[k1][k2] = v;
+    setFormData(cp);
   }
 
 
@@ -219,7 +252,7 @@ function App() {
     <div className="App">
       <div className="App-box">
         <Head cur_state={appstate}/>
-        <Cont cur_state={appstate} cas ={c_app} dt={FormData}/>
+        <Cont cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>
       </div>
     </div>
   );
