@@ -79,6 +79,7 @@ p{
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  box-shadow: 0 0.3rem 1rem 0.1rem var(--col-lg);
 }
 
 
@@ -449,6 +450,10 @@ p{
   line-height: 1.6rem;
   text-align: center;
 }
+.e img{
+  width: 4rem;
+  height: 4rem;
+}
 
 .content-ct-mobile{
   display: flex;
@@ -456,6 +461,7 @@ p{
   background-color: var(--col-wh);
   border-radius: 0.8rem;
   align-items: center;
+  box-shadow: 0 0.5rem 1rem 0.1rem var(--col-lg);
 }
 
 @media (max-width: 650px){
@@ -465,6 +471,7 @@ p{
     background-color: var(--col-mn);  
     border-radius: 0;
     flex-direction: column;
+    box-shadow: none;
   }
   .header-ct{
     z-index: 1;
@@ -490,8 +497,8 @@ p{
   }
   
   .catalog .circle{
-    width: 2.2rem;
-    height: 2.2rem;
+    width: 2rem;
+    height: 2rem;
     margin-right: 0rem;
   }
   
@@ -503,16 +510,81 @@ p{
   .content-ct{
     width: 100%;
     height: auto;
+    position: relative;
+    top: -8%;
+    z-index: 2
   }  
 
   .content-ct > *{
-    width: 90%;
+    width: 92%;
   }
   .content-ct-mobile > *{
-    width: 90%;
+    width: 86%;
+  }
+
+  h3{
+    font-size: 1.5rem;
+  }
+  
+  h4{
+    font-size: 0.8rem;
+  }
+
+  p{
+    line-height: 1.5rem;
+  }
+
+  .cont-title{
+    margin-top: 10%;
+    height: auto;
+  }
+  
+  .cont-main{
+    margin-top: 7%;
+    height: auto;
+  }
+  
+  .form-upper{
+    margin-bottom: 0.3rem;
+  }
+  
+  .form-lower{
+    border-radius: 0.3rem;
+  }
+
+  .error-message{
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+  }
+  
+  .form-lower::placeholder{
+    font-size: 0.9rem;
+  }
+  
+  .control-bar{
+    height: 0;
+  }
+  
+  .control-bar button{
+    height: 0rem;
+    visibility: hidden;
+  }
+
+  #phone-number{
+    margin-bottom: 2rem;
+  }
+  .control-bar .submit-button{
+    background-color: var(--col-mb);
+    color: var(--col-wh);
+  }
+  .d .control-bar .submit-button{
+    background-color: var(--col-ppb);
+  }
+  .control-bar .go-back-button{
+    font-size: 1rem;
+    color: var(--col-cg);
     position: relative;
-    top: -20%;
-    z-index: 2
+    left: -1.5rem;
   }
 
 }

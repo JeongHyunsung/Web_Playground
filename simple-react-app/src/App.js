@@ -2,7 +2,7 @@ import './App.css';
 import {findInputError} from './utils/findInputError.js'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { useMediaQuery } from 'react-responsive'
-import { useState } from 'react'
+import { useState, useRef, forwardRef, useImperativeHandle } from 'react'
 function Head({cur_state, mb}){
   return(
     <div className="header-ct">
@@ -47,11 +47,16 @@ function Cont({cur_state, cas, dt, sdt}){
   )
 }
 function ContMobile({cur_state, cas, dt, sdt}){
+  const mainref = useRef();
   return(
     <div className="content-ct">
       <div className="content-ct-mobile">
         <ContTitle cur_state={cur_state}/>
-        <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}/>
+        <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt} ref={mainref}/>
+      </div>
+      <div className="control-bar-mobile">
+        <button className="go-back-button" onClick={()=>{cas(0)}}>Go Back</button>
+        <button className="submit-button" onClick={mainref.current.sb1}>Next Step</button>
       </div>
     </div>
   )
@@ -70,20 +75,39 @@ function ContTitle({cur_state}){
   )
 }
 
-function ContMain({cur_state, cas, dt, sdt}){
+const ContMain = forwardRef(({cur_state, cas, dt, sdt}, ref)=>{
+  const ref_1 = useRef();
+  const ref_2 = useRef();
+  const ref_3 = useRef();
+  const ref_4 = useRef();
+  useImperativeHandle(ref, () => ({
+    sb1: () => {
+      return ref_1.current.submit
+    },
+    sb2: () => {
+      return ref_2.current.submit
+    },
+    sb3: () => {
+      return ref_3.current.submit
+    },
+    sb4: () => {
+      return ref_4.current.submit
+    },
+  }));
+
   let content;
   switch(cur_state){
     case 0:
-      content = <Cont1 cas = {cas} dt = {dt} sdt = {sdt}></Cont1>
+      content = <Cont1 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_1}></Cont1>
       break;
     case 1:
-      content = <Cont2 cas = {cas} dt = {dt} sdt = {sdt}></Cont2>
+      content = <Cont2 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_2}></Cont2>
       break;
     case 2:
-      content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt}></Cont3>
+      content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_3}></Cont3>
       break;
     case 3:
-      content = <Cont4 cas = {cas} dt = {dt}></Cont4>
+      content = <Cont4 cas = {cas} dt = {dt} ref = {ref_4}></Cont4>
       break;
     default:
       content = <Cont5/>
@@ -94,9 +118,10 @@ function ContMain({cur_state, cas, dt, sdt}){
       {content}
     </div>
   )
-}
+})
 
-function Cont1({cas, dt, sdt}){
+const Cont1 = forwardRef(({cas, dt, sdt}, ref)=>{
+
   const methods = useForm()
   const onSubmit = methods.handleSubmit(data => {
     sdt("a", "Name", data.Name);
@@ -108,6 +133,13 @@ function Cont1({cas, dt, sdt}){
     cas(1);
     console.log(dt);
   })
+
+  useImperativeHandle(ref, () => ({
+    submit: () => {
+      return onSubmit;
+    },
+ }));
+
   return(
     <div className="cont a">
       <FormProvider {...methods}>
@@ -139,7 +171,7 @@ function Cont1({cas, dt, sdt}){
       </FormProvider>
     </div>
   )
-}
+})
 
 function FormSet({lb, tp, vl, df, id, validation}){
   console.log(id, vl);
@@ -161,7 +193,14 @@ function FormSet({lb, tp, vl, df, id, validation}){
   )
 }
 
-function Cont2({cas, dt, sdt}){
+const Cont2 = forwardRef(({cas, dt, sdt}, ref)=>{
+
+  useImperativeHandle(ref, () => ({
+    submit: () => {
+      return onSubmit;
+    },
+ }));
+
   const [isyear, setIsyear] = useState((dt.complete.value >= 2)?!(dt.b.monthly):false);
   const [clicked, setClicked] = useState((dt.complete.value >= 2)?dt.b.option:0);
   const [over, setOver] = useState(-1);
@@ -201,7 +240,7 @@ function Cont2({cas, dt, sdt}){
 
     </div>
   )
-}
+})
 
 function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
   return(
@@ -222,7 +261,14 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
   )
 }
 
-function Cont3({cas, dt, sdt}){
+const Cont3 = forwardRef(({cas, dt, sdt}, ref)=>{
+
+  useImperativeHandle(ref, () => ({
+    submit: () => {
+      return onSubmit;
+    },
+ }));
+
   const [isClicked, setIsClicked] = useState((dt.complete.value >= 3)?[dt.c.opt1, dt.c.opt2, dt.c.opt3]:[true, true, false]);
   const [over, setOver] = useState(-1);
   function setCl_f(n){
@@ -262,7 +308,7 @@ function Cont3({cas, dt, sdt}){
     </div>
     
   )
-}
+})
 
 function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
   return(
@@ -288,7 +334,14 @@ function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
   )
 }
 
-function Cont4({cas, dt}){
+const Cont4 = forwardRef(({cas, dt}, ref)=>{
+
+  useImperativeHandle(ref, () => ({
+    submit: () => {
+      return onSubmit;
+    },
+ }));
+
   const pr_atr = (dt.b.monthly===true)?"/mo":"/yr";
   let g_price;
   let l1 = (dt.b.option===0)?"Arcade":(dt.b.option===1)?"Advanced":"Pro";
@@ -339,7 +392,7 @@ function Cont4({cas, dt}){
       </div>
     </div>
   )
-}
+})
 
 function Cont5(){
   return (
