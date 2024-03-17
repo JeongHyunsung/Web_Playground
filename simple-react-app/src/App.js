@@ -54,10 +54,11 @@ function ContMobile({cur_state, cas, dt, sdt, mb}){
         <ContTitle cur_state={cur_state}/>
         <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}  mb={mb} ref={mainref}/>
       </div>
+      {cur_state < 4 &&
       <div className="control-bar-mobile">
-        <button className="go-back-button" onClick={()=>{cas(0)}}>Go Back</button>
-      <button className="submit-button" onClick={()=>{mainref.current.submit()}}>Next Step</button>
-      </div>
+        {(cur_state >= 1)?<button className="go-back-button" onClick={()=>{cas(0)}}>Go Back</button>:<div></div>}
+        <button className="submit-button" onClick={()=>{mainref.current.submit()}}>Next Step</button>
+      </div>}
     </div>
   )
 }
@@ -393,19 +394,18 @@ function Cont5(){
   <div className="cont e">
     <img src="assets/images/icon-thank-you.svg" alt=""></img>
     <h3>Thank You!</h3>
-    <p>Thanks for confirming your subscription! We hope you have fun using our platform.
+    <p id="end">Thanks for confirming your subscription! We hope you have fun using our platform.
        If you ever need support, please feel free to email us ar support@loremgaming.com.</p>
   </div>
   )
 }
-
 /*https://www.freecodecamp.org/news/how-to-validate-forms-in-react/*/
 
 
 /* MAIN */
 function App() {
   const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:0}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
-  const [appstate, setAppstate] = useState(1);
+  const [appstate, setAppstate] = useState(0);
   const isMobile = useMediaQuery({ maxWidth: 650 })
   const c_app = (n) =>{
     setAppstate(n);
