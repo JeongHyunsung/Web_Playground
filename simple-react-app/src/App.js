@@ -38,25 +38,25 @@ function Catalog({state, cur_state, mb}){
   )
 }
 
-function Cont({cur_state, cas, dt, sdt}){
+function Cont({cur_state, cas, dt, sdt, mb}){
   return(
     <div className="content-ct">
       <ContTitle cur_state={cur_state}/>
-      <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}/>
+      <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt} mb={mb}/>
     </div>
   )
 }
-function ContMobile({cur_state, cas, dt, sdt}){
+function ContMobile({cur_state, cas, dt, sdt, mb}){
   const mainref = useRef();
   return(
     <div className="content-ct">
       <div className="content-ct-mobile">
         <ContTitle cur_state={cur_state}/>
-        <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt} ref={mainref}/>
+        <ContMain cur_state={cur_state} cas ={cas} dt ={dt} sdt={sdt}  mb={mb} ref={mainref}/>
       </div>
       <div className="control-bar-mobile">
         <button className="go-back-button" onClick={()=>{cas(0)}}>Go Back</button>
-        <button className="submit-button" onClick={mainref.current.sb1}>Next Step</button>
+      <button className="submit-button" onClick={()=>{mainref.current.submit()}}>Next Step</button>
       </div>
     </div>
   )
@@ -75,39 +75,21 @@ function ContTitle({cur_state}){
   )
 }
 
-const ContMain = forwardRef(({cur_state, cas, dt, sdt}, ref)=>{
-  const ref_1 = useRef();
-  const ref_2 = useRef();
-  const ref_3 = useRef();
-  const ref_4 = useRef();
-  useImperativeHandle(ref, () => ({
-    sb1: () => {
-      return ref_1.current.submit
-    },
-    sb2: () => {
-      return ref_2.current.submit
-    },
-    sb3: () => {
-      return ref_3.current.submit
-    },
-    sb4: () => {
-      return ref_4.current.submit
-    },
-  }));
+const ContMain = forwardRef(({cur_state, cas, dt, sdt, mb}, ref)=>{
 
   let content;
   switch(cur_state){
     case 0:
-      content = <Cont1 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_1}></Cont1>
+      content = <Cont1 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref}></Cont1>
       break;
     case 1:
-      content = <Cont2 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_2}></Cont2>
+      content = <Cont2 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref} mb = {mb}></Cont2>
       break;
     case 2:
-      content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref_3}></Cont3>
+      content = <Cont3 cas = {cas} dt = {dt} sdt = {sdt} ref = {ref}></Cont3>
       break;
     case 3:
-      content = <Cont4 cas = {cas} dt = {dt} ref = {ref_4}></Cont4>
+      content = <Cont4 cas = {cas} dt = {dt} ref = {ref}></Cont4>
       break;
     default:
       content = <Cont5/>
@@ -135,10 +117,10 @@ const Cont1 = forwardRef(({cas, dt, sdt}, ref)=>{
   })
 
   useImperativeHandle(ref, () => ({
-    submit: () => {
-      return onSubmit;
-    },
- }));
+    submit(){
+      onSubmit();
+    }
+  }))
 
   return(
     <div className="cont a">
@@ -193,13 +175,13 @@ function FormSet({lb, tp, vl, df, id, validation}){
   )
 }
 
-const Cont2 = forwardRef(({cas, dt, sdt}, ref)=>{
+const Cont2 = forwardRef(({cas, dt, sdt, mb}, ref)=>{
 
   useImperativeHandle(ref, () => ({
-    submit: () => {
-      return onSubmit;
-    },
- }));
+    submit(){
+      onSubmit();
+    }
+  }))
 
   const [isyear, setIsyear] = useState((dt.complete.value >= 2)?!(dt.b.monthly):false);
   const [clicked, setClicked] = useState((dt.complete.value >= 2)?dt.b.option:0);
@@ -217,13 +199,13 @@ const Cont2 = forwardRef(({cas, dt, sdt}, ref)=>{
     <div className="cont b">
       <div className ="option-box">
         <OptionCard 
-          im="assets/images/icon-arcade.svg" nm="Arcade" pr={(isyear)?"90":"9"} x={isyear}
+          im="assets/images/icon-arcade.svg" nm="Arcade" pr={(isyear)?"90":"9"} x={isyear} mb={mb}
           cur_num={0} cl={clicked} set_cl={setClicked} ov={over} set_ov={setOver}></OptionCard>
         <OptionCard 
-          im="assets/images/icon-advanced.svg" nm="Advanced" pr={(isyear)?"120":"12"} x={isyear}
+          im="assets/images/icon-advanced.svg" nm="Advanced" pr={(isyear)?"120":"12"} x={isyear} mb={mb}
           cur_num={1} cl={clicked} set_cl={setClicked} ov={over} set_ov={setOver}></OptionCard>
         <OptionCard 
-          im="assets/images/icon-pro.svg" nm="Pro" pr={(isyear)?"150":"15"} x={isyear}
+          im="assets/images/icon-pro.svg" nm="Pro" pr={(isyear)?"150":"15"} x={isyear} mb={mb}
           cur_num={2} cl={clicked} set_cl={setClicked} ov={over} set_ov={setOver}></OptionCard>
       </div>
       <div className="toggle-box">
@@ -242,21 +224,33 @@ const Cont2 = forwardRef(({cas, dt, sdt}, ref)=>{
   )
 })
 
-function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
+function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov, mb}){
   return(
     <div 
       className = "option"
-      style = {{borderColor: (cur_num===cl||cur_num===ov)?"var(--col-ppb)":"var(--col-cg)", backgroundColor:(cur_num===cl)?"var(--col-mn)":"var(--col-wh)"}}
+      style = {{borderColor: (cur_num===cl||cur_num===ov)?"var(--col-ppb)":"var(--col-cg)", 
+                backgroundColor:(cur_num===cl)?"var(--col-mn)":"var(--col-wh)",
+                height: (mb && x)?"6rem":(mb)?"5rem":"100%"}}
       onClick = {()=>{set_cl(cur_num)}}
       onMouseOver = {()=>{set_ov(cur_num)}}
       onMouseLeave = {()=>{set_ov(-1)}}>
-
+      {!mb &&
       <div className = "container">
         <img src={im} alt=""/>
         <h5>{nm}</h5>
         <p>{"$" + pr + "/" + ((x===true)?"yr":"mo")}</p>
         {x && <p className="sub-1">2 months free</p>}
+      </div>}
+      {mb &&
+      <div className = "container">
+        <img src={im} alt=""/>
+        <div className = "mobile-text-container">
+          <h5>{nm}</h5>
+          <p>{"$" + pr + "/" + ((x===true)?"yr":"mo")}</p>
+          {x && <p className="sub-1">2 months free</p>}
+        </div>
       </div>
+      }
     </div>
   )
 }
@@ -264,10 +258,10 @@ function OptionCard({im, nm, pr, x, cur_num, cl, set_cl, ov, set_ov}){
 const Cont3 = forwardRef(({cas, dt, sdt}, ref)=>{
 
   useImperativeHandle(ref, () => ({
-    submit: () => {
-      return onSubmit;
-    },
- }));
+    submit(){
+      onSubmit();
+    }
+  }))
 
   const [isClicked, setIsClicked] = useState((dt.complete.value >= 3)?[dt.c.opt1, dt.c.opt2, dt.c.opt3]:[true, true, false]);
   const [over, setOver] = useState(-1);
@@ -337,10 +331,10 @@ function OptionBar({nm, dc, pr, cur_num, cl, set_cl, ov, set_ov}){
 const Cont4 = forwardRef(({cas, dt}, ref)=>{
 
   useImperativeHandle(ref, () => ({
-    submit: () => {
-      return onSubmit;
-    },
- }));
+    submit(){
+      onSubmit();
+    }
+  }))
 
   const pr_atr = (dt.b.monthly===true)?"/mo":"/yr";
   let g_price;
@@ -411,7 +405,7 @@ function Cont5(){
 /* MAIN */
 function App() {
   const [FormData, setFormData] = useState({a:{Name:"", Email:"", Phone:""}, b:{monthly:true, option:0}, c:{opt1:true, opt2:true, opt3:false}, d:{}, complete:{value:0}});
-  const [appstate, setAppstate] = useState(0);
+  const [appstate, setAppstate] = useState(1);
   const isMobile = useMediaQuery({ maxWidth: 650 })
   const c_app = (n) =>{
     setAppstate(n);
@@ -427,8 +421,8 @@ function App() {
     <div className="App">
       <div className="App-box">
         <Head cur_state={appstate} mb={isMobile}/>
-        {!isMobile && <Cont cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>}
-        {isMobile && <ContMobile cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f}/>}
+        {!isMobile && <Cont cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f} mb={false}/>}
+        {isMobile && <ContMobile cur_state={appstate} cas ={c_app} dt={FormData} sdt={setData_f} mb={true}/>}
       </div>
     </div>
   );
