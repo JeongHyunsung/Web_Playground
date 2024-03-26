@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 /*https://www.freecodecamp.org/news/fullstack-react-blog-app-with-express-and-psql/ */
 
 
@@ -52,6 +53,11 @@ function Content({gs, sgs}){
 }
 
 function Cont0(){
+  const [data, setData] = useState({})
+  useEffect(()=>{
+    axios.get('/api/hello').then(res => setData(res.data))
+  })
+
   return(
     <div className="Cont0">
       <div className="Intro">

@@ -148,10 +148,10 @@ h1{
 }
 @keyframes blur{
   from{
-    -webkit-filter: blur(20px);
-    -moz-filter: blur(20px);
-    -o-filter: blur(20px);
-    -ms-filter: blur(20px);
+    -webkit-filter: blur(2rem);
+    -moz-filter: blur(2rem);
+    -o-filter: blur(2rem);
+    -ms-filter: blur(2rem);
     opacity: 0%;
   }
   to{
