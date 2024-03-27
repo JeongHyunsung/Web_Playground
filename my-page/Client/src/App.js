@@ -53,7 +53,7 @@ function Content({gs, sgs}){
 }
 
 function Cont0(){
-  const [data, setData] = useState({})
+  const [data, setData] = useState("")
   useEffect(()=>{
     axios.get('/api/hello').then(res => setData(res.data))
   })
@@ -68,7 +68,7 @@ function Cont0(){
       <p>There is no meaningless experience,</p>
       <p>So I try to <span className="pk">Learn various things</span> and <span className="pk">Apply them to world</span></p>
       <div className="recent-works">
-        
+        <h1>{data}</h1>
       </div>
     </div>
   )
